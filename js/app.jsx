@@ -32,16 +32,16 @@ document.addEventListener('DOMContentLoaded', function(){
                     <h1 data-id="1">Jura Południowa</h1>
                     <div style={style}>
                         <ul>
-                            <li>Rzędkowice</li>
-                            <li>Mirów</li>
-                            <li>Łutowiec</li>
-                            <li>Podlesice</li>
-                            <li>Morsko</li>
-                            <li>Skarżyce</li>
-                            <li>Suliszwice</li>
-                            <li>Dolina wiercicy</li>
-                            <li>Trzebniów</li>
-                            <li>Mirów</li>
+                            <li><a href="#">Rzędkowice</a></li>
+                            <li><a href="#">Mirów</a></li>
+                            <li><a href="#">Łutowiec</a></li>
+                            <li><a href="#">Podlesice</a></li>
+                            <li><a href="#">Morsko</a></li>
+                            <li><a href="#">Skarżyce</a></li>
+                            <li><a href="#">Suliszwice</a></li>
+                            <li><a href="#">Dolina wiercicy</a></li>
+                            <li><a href="#">Trzebniów</a></li>
+                            <li><a href="#">Mirów</a></li>
                         </ul>
                     </div>
                 </div>
@@ -66,16 +66,16 @@ document.addEventListener('DOMContentLoaded', function(){
                     <h1 data-id="2">Jura Środkowa</h1>
                     <div style={style}>
                         <ul>
-                            <li>Rzędkowice</li>
-                            <li>Mirów</li>
-                            <li>Łutowiec</li>
-                            <li>Podlesice</li>
-                            <li>Morsko</li>
-                            <li>Skarżyce</li>
-                            <li>Suliszwice</li>
-                            <li>Dolina wiercicy</li>
-                            <li>Trzebniów</li>
-                            <li>Mirów</li>
+                            <li><a href="#">Rzędkowice</a></li>
+                            <li><a href="#">Mirów</a></li>
+                            <li><a href="#">Łutowiec</a></li>
+                            <li><a href="#">Podlesice</a></li>
+                            <li><a href="#">Morsko</a></li>
+                            <li><a href="#">Skarżyce</a></li>
+                            <li><a href="#">Suliszwice</a></li>
+                            <li><a href="#">Dolina wiercicy</a></li>
+                            <li><a href="#">Trzebniów</a></li>
+                            <li><a href="#">Mirów</a></li>
                         </ul>
                     </div>
                 </div>
@@ -100,16 +100,16 @@ document.addEventListener('DOMContentLoaded', function(){
                     <h1 data-id="3">Jura Północna</h1>
                     <div style={style}>
                         <ul>
-                            <li>Rzędkowice</li>
-                            <li>Mirów</li>
-                            <li>Łutowiec</li>
-                            <li>Podlesice</li>
-                            <li>Morsko</li>
-                            <li>Skarżyce</li>
-                            <li>Suliszwice</li>
-                            <li>Dolina wiercicy</li>
-                            <li>Trzebniów</li>
-                            <li>Mirów</li>
+                            <li><a href="#">Rzędkowice</a></li>
+                            <li><a href="#">Mirów</a></li>
+                            <li><a href="#">Łutowiec</a></li>
+                            <li><a href="#">Podlesice</a></li>
+                            <li><a href="#">Morsko</a></li>
+                            <li><a href="#">Skarżyce</a></li>
+                            <li><a href="#">Suliszwice</a></li>
+                            <li><a href="#">Dolina wiercicy</a></li>
+                            <li><a href="#">Trzebniów</a></li>
+                            <li><a href="#">Mirów</a></li>
                         </ul>
                     </div>
                 </div>
