@@ -1,0 +1,497 @@
+{
+  "regiony": [
+    {
+      "name": "east",
+      "rejony": [
+        {
+          "name": "Dolina Prądnika, Wedonki i Garliczki",
+          "skaly": [
+            {
+              "name": "Pagonowe skały",
+              "drogi": [
+                {
+                  "name": "Triada",
+                  "wycena": "VI.1+",
+                  "przejscia": 0,
+                  "ocena": 0,
+                  "comments": []
+                },
+                {
+                  "name": "Ekskalibur",
+                  "wycena": "VI.2+",
+                  "przejscia": 0,
+                  "ocena": 0,
+                  "comments": []
+                },
+                {
+                  "name": "Aber Gold",
+                  "wycena": "VI.1+",
+                  "przejscia": 0,
+                  "ocena": 0,
+                  "comments": []
+                },
+                {
+                  "name": "OLT Ekspress",
+                  "wycena": "VI+",
+                  "przejscia": 0,
+                  "ocena": 0,
+                  "comments": []
+                }
+              ]
+            },
+            {
+              "name": "Zimne Płyty",
+              "drogi": [
+                {
+                  "name": "Stopy",
+                  "wycena": "VI.1+",
+                  "przejscia": 0,
+                  "ocena": 0,
+                  "comments": []
+                },
+                {
+                  "name": "Kant ze stałym warunem",
+                  "wycena": "VI.2",
+                  "przejscia": 0,
+                  "ocena": 0,
+                  "comments": []
+                },
+                {
+                  "name": "Zacietrzewiony mopsik",
+                  "wycena": "VI.2",
+                  "przejscia": 0,
+                  "ocena": 0,
+                  "comments": []
+                }
+              ]
+            },
+            {
+              "name": "Jęzory",
+              "drogi": []
+            },
+            {
+              "name": "Siatka i Knapa",
+              "drogi": []
+            },
+            {
+              "name": "Piramida i Dziurawa",
+              "drogi": []
+            },
+            {
+              "name": "Trzon",
+              "drogi": []
+            },
+            {
+              "name": "Skała nad potokiem",
+              "drogi": []
+            },
+            {
+              "name": "Rzeszoto",
+              "drogi": []
+            },
+            {
+              "name": "Pochylec",
+              "drogi": []
+            },
+            {
+              "name": "Duży Pochylec",
+              "drogi": []
+            },
+            {
+              "name": "Skała Zachwytu",
+              "drogi": []
+            },
+            {
+              "name": "Sołtysowa Skała",
+              "drogi": []
+            },
+            {
+              "name": "Łaskawiec",
+              "drogi": []
+            },
+            {
+              "name": "Skała w Januszowicach",
+              "drogi": []
+            },
+            {
+              "name": "Wielka Skała",
+              "drogi": []
+            },
+            {
+              "name": "Kapitan Garliczka",
+              "drogi": []
+            },
+            {
+              "name": "Patrol Garliczka",
+              "drogi": []
+            }
+          ]
+        },
+        {
+          "name": "Doliny Szklarki i Racławki",
+          "skaly": [
+            {
+              "name": "Skotnicowa Skała",
+              "drogi": []
+            },
+            {
+              "name": "Kość",
+              "drogi": []
+            },
+            {
+              "name": "Łopatka",
+              "drogi": []
+            },
+            {
+              "name": "Bulwa i Jednorożec",
+              "drogi": []
+            },
+            {
+              "name": "Parowozownia",
+              "drogi": []
+            },
+            {
+              "name": "Manufaktura i Folwark",
+              "drogi": []
+            },
+            {
+              "name": "Powroźna grań",
+              "drogi": []
+            },
+            {
+              "name": "Szafot",
+              "drogi": []
+            },
+            {
+              "name": "Racuch",
+              "drogi": []
+            },
+            {
+              "name": "Dziewczynka i Ostatnia",
+              "drogi": []
+            },
+            {
+              "name": "Ogrodzieniec",
+              "drogi": []
+            },
+            {
+              "name": "Piktogramy",
+              "drogi": []
+            },
+            {
+              "name": "Połać Skwira",
+              "drogi": []
+            },
+            {
+              "name": "Eternit i Soczewka",
+              "drogi": []
+            },
+            {
+              "name": "Płytka Benduskiego",
+              "drogi": []
+            },
+            {
+              "name": "Filarek Bularza",
+              "drogi": []
+            },
+            {
+              "name": "Wschodni mur",
+              "drogi": []
+            },
+            {
+              "name": "Płyta Szymona",
+              "drogi": []
+            },
+            {
+              "name": "Szeroki komin",
+              "drogi": []
+            },
+            {
+              "name": "Przełaz",
+              "drogi": []
+            }
+          ]
+        },
+        {
+          "name": "Dolina Będkowska",
+          "skaly": [
+            {
+              "name": "Psiklatka",
+              "drogi": []
+            },
+            {
+              "name": "Łabajowa",
+              "drogi": []
+            },
+            {
+              "name": "Wielka Turnia",
+              "drogi": []
+            },
+            {
+              "name": "Średnik",
+              "drogi": []
+            },
+            {
+              "name": "Dupa słonia",
+              "drogi": []
+            },
+            {
+              "name": "Sokolica",
+              "drogi": []
+            }
+          ]
+        },
+        {
+          "name": "Dolina Kobylańska",
+          "skaly": [
+            {
+              "name": "Turnia Długosza",
+              "drogi": []
+            },
+            {
+              "name": "Szara Płyta",
+              "drogi": []
+            },
+            {
+              "name": "Zjazdowa Turnia",
+              "drogi": []
+            },
+            {
+              "name": "Żabi Koń",
+              "drogi": []
+            }
+          ]
+        },
+        {
+          "name": "Dolina Bolechowicka",
+          "skaly": [
+            {
+              "name": "Ostra Turniczka",
+              "drogi": []
+            },
+            {
+              "name": "Filar Pokutników",
+              "drogi": []
+            },
+            {
+              "name": "Mur Pokutników",
+              "drogi": []
+            },
+            {
+              "name": "Zamarła Turnia",
+              "drogi": []
+            },
+            {
+              "name": "Turnia Nad Drogą",
+              "drogi": []
+            },
+            {
+              "name": "Poprzeczna Grzęda",
+              "drogi": []
+            },
+            {
+              "name": "Filar Abazego i Filar Wallischa",
+              "drogi": []
+            },
+            {
+              "name": "Piętrowa turniczka",
+              "drogi": []
+            }
+          ]
+        },
+        {
+          "name": "Skały Karniowickie",
+          "skaly": [
+            {
+              "name": "Trybuna A",
+              "drogi": []
+            },
+            {
+              "name": "Bramka i Boisko",
+              "drogi": []
+            }
+          ]
+        },
+        {
+          "name": "Dolina Kluczwody",
+          "skaly": [
+            {
+              "name": "Żytnie Skały",
+              "drogi": []
+            },
+            {
+              "name": "Dziurawiec",
+              "drogi": []
+            },
+            {
+              "name": "Polnik",
+              "drogi": []
+            },
+            {
+              "name": "Poprzeczna Turnia i Zaroślak",
+              "drogi": []
+            },
+            {
+              "name": "Dzikie Turnie",
+              "drogi": []
+            },
+            {
+              "name": "Cisowa Turnia",
+              "drogi": []
+            },
+            {
+              "name": "Wierzchowska Turnia i Leśna Skała",
+              "drogi": []
+            },
+            {
+              "name": "Czarna Skała",
+              "drogi": []
+            },
+            {
+              "name": "Mamutowa Skała",
+              "drogi": []
+            },
+            {
+              "name": "Jaskinia Mamutowa",
+              "drogi": []
+            },
+            {
+              "name": "Skała nad grotą",
+              "drogi": []
+            }
+          ]
+        },
+        {
+          "name": "Garb Tenczyński",
+          "skaly": [
+            {
+              "name": "Obchodnia",
+              "drogi": []
+            },
+            {
+              "name": "Kazalnica",
+              "drogi": []
+            },
+            {
+              "name": "Dzika Baszta",
+              "drogi": []
+            },
+            {
+              "name": "Cygańska",
+              "drogi": []
+            },
+            {
+              "name": "Wolfgang",
+              "drogi": []
+            }
+          ]
+        },
+        {
+          "name": "Brama Krakowska",
+          "skaly": [
+            {
+              "name": "Winnica",
+              "drogi": []
+            },
+            {
+              "name": "Skurwysyn",
+              "drogi": []
+            },
+            {
+              "name": "Freney",
+              "drogi": []
+            },
+            {
+              "name": "Mur Estetów",
+              "drogi": []
+            },
+            {
+              "name": "Czarne zacięcie",
+              "drogi": []
+            }
+          ]
+        }
+
+      ]
+    },
+    {
+      "name": "center",
+      "rejony": [
+        {
+          "name": "Karlin"
+        },
+        {
+          "name": "Podzamcze"
+        },
+        {
+          "name": "Niegowonice"
+        },
+        {
+          "name": "Ryczów"
+        },
+        {
+          "name": "Smoleń"
+        },
+        {
+          "name": "Olkusz"
+        },
+        {
+          "name": "Dolina Dłubni"
+        }
+      ]
+    },
+    {
+      "name": "north",
+      "rejony": [
+        {
+          "name": "Podlesice"
+        },
+        {
+          "name": "Rzędkowice"
+        },
+        {
+          "name": "Mirów"
+        },
+        {
+          "name": "Morsko"
+        },
+        {
+          "name": "Piaseczno"
+        },
+        {
+          "name": "Skarżyce"
+        },
+        {
+          "name": "Trzebniów"
+        },
+        {
+          "name": "Przewodziszowice"
+        },
+        {
+          "name": "Łutowiec"
+        },
+        {
+          "name": "Dolina Wiercicy"
+        },
+        {
+          "name": "Suliszowice"
+        },
+        {
+          "name": "Zastudnie"
+        },
+        {
+          "name": "Olsztyn"
+        },
+        {
+          "name": "Góry Sokole"
+        },
+        {
+          "name": "Kusięta"
+        },
+        {
+          "name": "Przełom Warty"
+        }
+      ]
+    }
+  ]
+}

@@ -2,17 +2,31 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 
+
 document.addEventListener('DOMContentLoaded', function(){
 
 
     class Nav extends React.Component{
+
+        handleList = () => {
+            if(typeof this.props.handleList === 'function'){
+                this.props.handleList();
+            }
+        }
+
+        handleJura = () => {
+            if(typeof this.props.handleJura === 'function'){
+                this.props.handleJura();
+            }
+        }
+
         render(){
             return (
                 <div>
                     <ul className="nav">
                         <li><input placeholder="Szukaj"/></li>
-                        <li><a href="#">KochamJurę.pl</a></li>
-                        <li><a href="#">Moje przejścia</a></li>
+                        <li><a onClick={this.handleJura} href="#">KochamJurę.pl</a></li>
+                        <li><a onClick={this.handleList} href="#">Moje przejścia</a></li>
                         <li><a href="#">Login</a></li>
                     </ul>
                 </div>
@@ -20,7 +34,59 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     }
 
+    class MyList extends React.Component{
+        render(){
+
+            let rows = [];
+
+            return (
+                <div>
+                    <table style={{width: '98%', margin: '2px', borderCollapse: "collapse"}} className="green">
+                        <thead>
+                        <tr>
+                            <th>Data przejcia</th>
+                            <th>Wycena</th>
+                            <th>Styl</th>
+                            <th>Nazwa</th>
+                            <th>Rejon/skałą</th>
+                            <th>Komentarz</th>
+                            <th>Ocena</th>
+                            <th>Edytuj</th>
+                        </tr>
+                        </thead>
+                        <tbody>{rows}</tbody>
+                    </table>
+                </div>
+            )
+        }
+    }
+
     class EastJura extends React.Component{
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                data: ''
+            }
+        }
+
+
+        componentDidMount() {
+            fetch(`http://localhost:3010/regiony?name=east`)
+                .then( resp => resp.json())
+                .then( resp => {
+                    let list = resp[0].rejony;
+                    console.log(list[8].skaly);
+                    let listElements = list.map( el => <li><a href="#" onClick={this.handleSchow} data-id="1">{el.name}</a></li>);
+
+                    this.setState({
+                        data: listElements
+                    })
+                })
+                .catch( err => {
+                    console.log('Błąd!', err);
+                });
+        }
 
         handleClick = (e) => {
             if(typeof this.props.hanldeFlex === 'function'){
@@ -31,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function(){
         handleSchow = (e)=> {
             if(typeof this.props.handleSchow === 'function'){
                 this.props.handleSchow(e);
+                console.log(e.target.innerText);
             }
         }
 
@@ -44,16 +111,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     <h1 data-id="1">Jura Południowa</h1>
                     <div style={style}>
                         <ul>
-                            <li><a href="#" onClick={this.handleSchow} data-id="1">Rzędkowice</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="1">Mirów</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="1">Łutowiec</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="1">Podlesice</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="1">Morsko</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="1">Skarżyce</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="1">Suliszwice</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="1">Dolina wiercicy</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="1">Trzebniów</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="1">Mirów</a></li>
+                            {this.state.data}
                         </ul>
                     </div>
                 </div>
@@ -65,6 +123,30 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     class CenterJura extends React.Component{
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                data: ''
+            }
+        }
+
+
+        componentDidMount() {
+            fetch(`http://localhost:3010/regiony?name=center`)
+                .then( resp => resp.json())
+                .then( resp => {
+                    let list = resp[0].rejony;
+                    let listElements = list.map( el => <li><a href="#" onClick={this.handleSchow} data-id="2">{el.name}</a></li>);
+
+                    this.setState({
+                        data: listElements
+                    })
+                })
+                .catch( err => {
+                    console.log('Błąd!', err);
+                });
+        }
 
         handleClick = (e) => {
             if(typeof this.props.hanldeFlex === 'function'){
@@ -87,16 +169,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     <h1 data-id="2">Jura Środkowa</h1>
                     <div style={style}>
                         <ul>
-                            <li><a href="#" onClick={this.handleSchow} data-id="2">Rzędkowice</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="2">Mirów</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="2">Łutowiec</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="2">Podlesice</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="2">Morsko</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="2">Skarżyce</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="2">Suliszwice</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="2">Dolina wiercicy</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="2">Trzebniów</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="2">Mirów</a></li>
+                            {this.state.data}
                         </ul>
                     </div>
                 </div>
@@ -108,6 +181,30 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     class NorthJura extends React.Component{
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                data: ''
+            }
+        }
+
+
+        componentDidMount() {
+            fetch(`http://localhost:3010/regiony?name=north`)
+                .then( resp => resp.json())
+                .then( resp => {
+                    let list = resp[0].rejony;
+                    let listElements = list.map( el => <li><a href="#" onClick={this.handleSchow} data-id="3">{el.name}</a></li>);
+
+                    this.setState({
+                        data: listElements
+                    })
+                })
+                .catch( err => {
+                    console.log('Błąd!', err);
+                });
+        }
 
         handleClick = (e) => {
             if(typeof this.props.hanldeFlex === 'function'){
@@ -131,16 +228,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     <h1 data-id="3">Jura Północna</h1>
                     <div style={style}>
                         <ul>
-                            <li><a href="#" onClick={this.handleSchow} data-id="3">Rzędkowice</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="3">Mirów</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="3">Łutowiec</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="3">Podlesice</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="3">Morsko</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="3">Skarżyce</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="3">Suliszwice</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="3">Dolina wiercicy</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="3">Trzebniów</a></li>
-                            <li><a href="#" onClick={this.handleSchow} data-id="3">Mirów</a></li>
+                            {this.state.data}
                         </ul>
                     </div>
                 </div>
@@ -323,13 +411,43 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     class App extends React.Component{
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                myList: false
+            }
+        }
+
+        handleList = () => {
+            this.setState({
+                myList: true
+            })
+        }
+
+        handleJura = () => {
+            this.setState({
+                myList: false
+            })
+        }
+
         render(){
+
+            if(this.state.myList === false) {
             return (
                 <div>
-                    <Nav/>
+                    <Nav handleList={this.handleList} handleJura={this.handleJura}/>
                     <MojaJura/>
                 </div>
             )
+            } else {
+                return (
+                    <div>
+                        <Nav handleList={this.handleList} handleJura={this.handleJura}/>
+                        <MyList/>
+                    </div>
+                )
+            }
         }
     }
 
