@@ -34,6 +34,37 @@ body{
     position: relative;
 }
 
+.upperList {
+    width: 800px;
+    height: 8%;
+}
+
+.upperList > ul {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.upperList ul li {
+    font-size: 1rem;
+    line-height: 40px;
+    color: blue;
+}
+
+.downList {
+    width: 100%;
+    height: 92%;
+    border: 1px solid black;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: .5s;
+    color: white;
+    text-shadow: 1px 1px #000, 1px -1px #000, -1px 1px #000, -1px -1px #000;
+}
+
 ul{
     list-style: none;
 }
@@ -45,8 +76,18 @@ li{
 a{
     text-decoration: none;
     color: white;
+    text-shadow: 1px 1px #000, 1px -1px #000, -1px 1px #000, -1px -1px #000;
 }
 
 a:hover{
     color: cornflowerblue;
 }
+
+.nav{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
