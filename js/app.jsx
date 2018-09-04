@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
             return (
                 <div>
-                    <table style={{width: '98%', margin: '2px', borderCollapse: "collapse"}} className="green">
+                    <table style={{width: '98%', margin: '2px', borderCollapse: "collapse"}}>
                         <thead>
                         <tr>
                             <th>Data przejcia</th>
@@ -66,7 +66,10 @@ document.addEventListener('DOMContentLoaded', function(){
             super(props);
 
             this.state = {
-                data: ''
+                data: '',
+                skaly: '',
+                sklayToShow: '',
+
             }
         }
 
@@ -75,12 +78,16 @@ document.addEventListener('DOMContentLoaded', function(){
             fetch(`http://localhost:3010/regiony?name=east`)
                 .then( resp => resp.json())
                 .then( resp => {
+                    let skalyArr = [];
                     let list = resp[0].rejony;
-                    console.log(list[8].skaly);
-                    let listElements = list.map( el => <li><a href="#" onClick={this.handleSchow} data-id="1">{el.name}</a></li>);
+
+                    list.forEach(el => skalyArr.push(el.skaly));
+                    let listElements = list.map( (el,index) => <li key={index}><a href="#" onClick={this.handleSchow} data-index={index} data-id="1">{el.name}</a></li>);
+
 
                     this.setState({
-                        data: listElements
+                        data: listElements,
+                        skaly: skalyArr
                     })
                 })
                 .catch( err => {
@@ -97,7 +104,13 @@ document.addEventListener('DOMContentLoaded', function(){
         handleSchow = (e)=> {
             if(typeof this.props.handleSchow === 'function'){
                 this.props.handleSchow(e);
-                console.log(e.target.innerText);
+
+                let skalyIndex = e.target.dataset.index;
+                let newArr = [...this.state.skaly[skalyIndex]];
+
+                this.setState({
+                    sklayToShow: newArr
+                })
             }
         }
 
@@ -117,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 </div>
             )
         } else if(this.props.schowEast === true) {
-        return <CragsList/>
+        return <CragsList sklayToShow={this.state.sklayToShow} data={this.state.data}/>
     }
         }
     }
@@ -137,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 .then( resp => resp.json())
                 .then( resp => {
                     let list = resp[0].rejony;
-                    let listElements = list.map( el => <li><a href="#" onClick={this.handleSchow} data-id="2">{el.name}</a></li>);
+                    let listElements = list.map( (el,index) => <li key={index}><a key={index} href="#" onClick={this.handleSchow} data-id="2">{el.name}</a></li>);
 
                     this.setState({
                         data: listElements
@@ -195,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 .then( resp => resp.json())
                 .then( resp => {
                     let list = resp[0].rejony;
-                    let listElements = list.map( el => <li><a href="#" onClick={this.handleSchow} data-id="3">{el.name}</a></li>);
+                    let listElements = list.map( (el,index) => <li key={index}><a key={index} href="#" onClick={this.handleSchow} data-id="3">{el.name}</a></li>);
 
                     this.setState({
                         data: listElements
@@ -317,21 +330,13 @@ document.addEventListener('DOMContentLoaded', function(){
         render(){
 
             let rows = [];
+            this.props.routeList.forEach( (el,index) => rows.push(<tr key={index}><td>{el.name}</td><td>{el.wycena}</td><td>{el.przejscia}</td><td>{el.ocena}</td></tr>));
 
             return (
                 <div>
                     <div className="upperList">
                         <ul>
-                            <li><a href="#">Rzędkowice</a></li>
-                            <li><a href="#">Mirów</a></li>
-                            <li><a href="#">Łutowiec</a></li>
-                            <li><a href="#">Podlesice</a></li>
-                            <li><a href="#">Morsko</a></li>
-                            <li><a href="#">Skarżyce</a></li>
-                            <li><a href="#">Suliszwice</a></li>
-                            <li><a href="#">Dolina wiercicy</a></li>
-                            <li><a href="#">Trzebniów</a></li>
-                            <li><a href="#">Mirów</a></li>
+                            {this.props.listToSend}
                         </ul>
                     </div>
                     <table style={{width: '98%', margin: '2px', borderCollapse: "collapse"}} className="green">
@@ -359,53 +364,52 @@ document.addEventListener('DOMContentLoaded', function(){
             super(props);
 
             this.state = {
-                schowList: false
+                schowList: false,
+                routesList: '',
+                listToSend: ''
             }
         }
 
         handleList = (e) => {
+            let routeIndex = e.target.dataset.index;
+            let newArray = [...this.props.sklayToShow];
+            let routeToSend = newArray[routeIndex].drogi;
+
+            let newArr = [...this.props.sklayToShow];
+
+            let newList = newArr.map( (el,index) => <li key={index}><a onClick={this.handleList} href="#" data-index={index}>{el.name}</a></li>)
+
             this.setState({
-                schowList: true
+                schowList: true,
+                routeList: routeToSend,
+                listToSend: newList
             })
         }
 
         render(){
+
+            let newArr = [...this.props.sklayToShow];
+
+            let newList = newArr.map( (el,index) => <li key={index}><a onClick={this.handleList} href="#" data-index={index}>{el.name}</a></li>)
+
 
             if(this.state.schowList === false){
             return (
                 <div style={{width: '100%'}}>
                     <div className="upperList">
                         <ul>
-                            <li><a href="#">Rzędkowice</a></li>
-                            <li><a href="#">Mirów</a></li>
-                            <li><a href="#">Łutowiec</a></li>
-                            <li><a href="#">Podlesice</a></li>
-                            <li><a href="#">Morsko</a></li>
-                            <li><a href="#">Skarżyce</a></li>
-                            <li><a href="#">Suliszwice</a></li>
-                            <li><a href="#">Dolina wiercicy</a></li>
-                            <li><a href="#">Trzebniów</a></li>
-                            <li><a href="#">Mirów</a></li>
+                            {this.props.data}
                         </ul>
                     </div>
                     <div className="downList">
                         <ul>
-                            <li><a onClick={this.handleList} href="#">Rzędkowice!!</a></li>
-                            <li><a onClick={this.handleList} href="#">Mirów!!!!!!</a></li>
-                            <li><a onClick={this.handleList} href="#">Łutowiec!!!!!!!!!</a></li>
-                            <li><a onClick={this.handleList} href="#">Podlesice!!!!!!!</a></li>
-                            <li><a onClick={this.handleList} href="#">Morsko</a></li>
-                            <li><a onClick={this.handleList} href="#">Skarżyce</a></li>
-                            <li><a onClick={this.handleList} href="#">Suliszwice!!!!!</a></li>
-                            <li><a onClick={this.handleList} href="#">Dolina wiercicy</a></li>
-                            <li><a onClick={this.handleList} href="#">Trzebniów!!!!!!!</a></li>
-                            <li><a onClick={this.handleList} href="#">Mirów!!!!!</a></li>
+                            {newList}
                         </ul>
                     </div>
                 </div>
             )
             } else {
-                return <RouteList/>
+                return <RouteList routeList={this.state.routeList} listToSend={this.state.listToSend} />
             }
         }
     }
