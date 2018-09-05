@@ -7,6 +7,15 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
     class Nav extends React.Component{
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                loggedIn: false,
+                schowLog: false
+            }
+        }
+
 
         handleList = () => {
             if(typeof this.props.handleList === 'function'){
@@ -20,6 +29,12 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         }
 
+        handleLogin = () => {
+            this.setState({
+                schowLog: true
+            })
+        }
+
         render(){
             return (
                 <div>
@@ -27,11 +42,51 @@ document.addEventListener('DOMContentLoaded', function(){
                         <li><input placeholder="Szukaj"/></li>
                         <li><a onClick={this.handleJura} href="#">KochamJurę.pl</a></li>
                         <li><a onClick={this.handleList} href="#">Moje przejścia</a></li>
-                        <li><a href="#">Login</a></li>
+                        { this.state.schowLog ? <LoginForm/> : <li><a onClick={this.handleLogin} href="#">Login</a></li>}
                     </ul>
                 </div>
             )
         }
+    }
+
+    class LoginForm extends React.Component{
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                password: '',
+                login: ''
+            }
+        }
+
+        handleChange = (e) => {
+            const value = e.target.value;
+            const name = e.target.name;
+
+            this.setState({
+                [name]: value
+            });
+
+            console.log(this.state.password, this.state.login);
+        }
+
+
+        render(){
+            return (
+                <form style={{width: '200px'}}>
+                    <label>
+                        Login:
+                        <input name="login" onChange={this.handleChange}/>
+                    </label>
+                    <label>
+                        Hasło:
+                        <input name="password" onChange={this.handleChange} type="password"/>
+                    </label>
+                    <input type="submit" value="Wyślij"/>
+                </form>
+            )
+        }
+
     }
 
     class MyList extends React.Component{
@@ -493,9 +548,11 @@ document.addEventListener('DOMContentLoaded', function(){
                             <th>Wybierz</th>
                         </tr>
                         </thead>
-                        <tbody>{rows}</tbody>
+                        <tbody>
+                        {rows}
+                        {this.state.addShow ? <AddRoute/> : null}
+                        </tbody>
                     </table>
-                    {this.state.addShow ? <AddRoute/> : null}
                     <div style={{display: 'flex', justifyContent: 'flex-end'}}>
                         <button onClick={this.handleAdd} style={{margin: '30px'}}>Dodaj drogę</button>
                         <button onClick={this.handleSend} style={{margin: '30px'}}>Dodaj przejścia</button>
@@ -510,13 +567,63 @@ document.addEventListener('DOMContentLoaded', function(){
             super(props);
 
             this.state = {
-               routeToAdd: ''
+               routeToAdd: '',
+                name: '',
+                wycena: ''
             }
+        }
+
+        handleName = (e) => {
+            this.setState({
+                name: e.target.value
+            })
+        }
+
+        handleSelect = (e) => {
+            this.setState({
+                wycena: e.target.value
+            })
+        }
+
+        handleSend = () => {
+
+            let newName = this.state.name;
+            let newWycena = this.state.wycena;
+
+            const obj = {
+                "name": newName,
+                "wycena": newWycena,
+                "przejscia": 0,
+                "ocena": 0,
+                "comments": []
+            };
+            console.log(obj);
         }
 
         render(){
             return (
-                <tr><td><input/></td><td><input/></td><td><button>Zapisz</button></td></tr>
+                <tr style={{marginTop: '20px'}}><td><input onChange={this.handleName}/></td><td>
+                    <select onChange={this.handleSelect}>
+                        <option value="V">V</option>
+                        <option value="V+">V+</option>
+                        <option value="VI">VI</option>
+                        <option value="VI+">VI+</option>
+                        <option value="VI.1">VI.1</option>
+                        <option value="VI.1+">VI.1+</option>
+                        <option value="VI.2">VI.2</option>
+                        <option value="VI.2+">VI.2+</option>
+                        <option value="VI.3">VI.3</option>
+                        <option value="VI.3+">VI.3+</option>
+                        <option value="VI.4">VI.4</option>
+                        <option value="VI.4+">VI.4+</option>
+                        <option value="VI.5">VI.5</option>
+                        <option value="VI.5+">VI.5+</option>
+                        <option value="VI.6">VI.6</option>
+                        <option value="VI.6+">VI.6+</option>
+                        <option value="VI.7">VI.7</option>
+                        <option value="VI.7+">VI.7+</option>
+                    </select>
+                </td><td><button onClick={this.handleSend}>Zapisz</button></td></tr>
             )
         }
     }
