@@ -35,9 +35,40 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     class MyList extends React.Component{
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                list: ''
+            }
+        }
+
+
+        componentDidMount() {
+            fetch(`http://localhost:3010/moje?name=data`)
+                .then( resp => resp.json())
+                .then( resp => {
+                        let arr = [...resp];
+                        let newArr = [];
+                        arr.forEach(el => el.data.forEach( route => newArr.push(route)));
+
+                        this.setState({
+                            list: newArr
+                        })
+
+                })
+                .catch( err => {
+                    console.log('Błąd!', err);
+                });
+        }
+
         render(){
 
             let rows = [];
+            const myList = [...this.state.list];
+            myList.forEach( (el,index) => rows.push(<tr key={index}><td>{el.date}</td><td>{el.wycena}</td><td>{el.styl}</td>
+                <td>{el.name}</td><td>xxx</td><td>yyy</td><td>{el.ocena}</td><td><button>Edytuj</button></td></tr>))
+
 
             return (
                 <div>
@@ -78,9 +109,9 @@ document.addEventListener('DOMContentLoaded', function(){
             fetch(`http://localhost:3010/regiony?name=east`)
                 .then( resp => resp.json())
                 .then( resp => {
-                    let skalyArr = [];
-                    let list = resp[0].rejony;
 
+                    let list = resp[0].rejony;
+                    let skalyArr = [];
                     list.forEach(el => skalyArr.push(el.skaly));
                     let listElements = list.map( (el,index) => <li key={index}><a href="#" onClick={this.handleSchow} data-index={index} data-id="1">{el.name}</a></li>);
 
@@ -140,7 +171,9 @@ document.addEventListener('DOMContentLoaded', function(){
             super(props);
 
             this.state = {
-                data: ''
+                data: '',
+                skaly: '',
+                sklayToShow: ''
             }
         }
 
@@ -150,10 +183,13 @@ document.addEventListener('DOMContentLoaded', function(){
                 .then( resp => resp.json())
                 .then( resp => {
                     let list = resp[0].rejony;
-                    let listElements = list.map( (el,index) => <li key={index}><a key={index} href="#" onClick={this.handleSchow} data-id="2">{el.name}</a></li>);
+                    let skalyArr = [];
+                    list.forEach(el => skalyArr.push(el.skaly));
+                    let listElements = list.map( (el,index) => <li key={index}><a onClick={this.handleSchow} data-index={index} data-id="2">{el.name}</a></li>);
 
                     this.setState({
-                        data: listElements
+                        data: listElements,
+                        skaly: skalyArr
                     })
                 })
                 .catch( err => {
@@ -170,6 +206,13 @@ document.addEventListener('DOMContentLoaded', function(){
         handleSchow = (e)=> {
             if(typeof this.props.handleSchow === 'function'){
                 this.props.handleSchow(e);
+
+                let skalyIndex = e.target.dataset.index;
+                let newArr = [...this.state.skaly[skalyIndex]];
+
+                this.setState({
+                    sklayToShow: newArr
+                })
             }
         }
 
@@ -188,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 </div>
             )
             } else if(this.props.schowCenter === true) {
-                return <CragsList/>
+                return <CragsList sklayToShow={this.state.sklayToShow} data={this.state.data}/>
             }
         }
     }
@@ -198,7 +241,9 @@ document.addEventListener('DOMContentLoaded', function(){
             super(props);
 
             this.state = {
-                data: ''
+                data: '',
+                skaly: '',
+                sklayToShow: ''
             }
         }
 
@@ -208,10 +253,13 @@ document.addEventListener('DOMContentLoaded', function(){
                 .then( resp => resp.json())
                 .then( resp => {
                     let list = resp[0].rejony;
-                    let listElements = list.map( (el,index) => <li key={index}><a key={index} href="#" onClick={this.handleSchow} data-id="3">{el.name}</a></li>);
+                    let skalyArr = [];
+                    list.forEach(el => skalyArr.push(el.skaly));
+                    let listElements = list.map( (el,index) => <li key={index}><a href="#" onClick={this.handleSchow} data-index={index} data-id="3">{el.name}</a></li>);
 
                     this.setState({
-                        data: listElements
+                        data: listElements,
+                        skaly: skalyArr
                     })
                 })
                 .catch( err => {
@@ -228,6 +276,13 @@ document.addEventListener('DOMContentLoaded', function(){
         handleSchow = (e)=> {
             if(typeof this.props.handleSchow === 'function'){
                 this.props.handleSchow(e);
+
+                let skalyIndex = e.target.dataset.index;
+                let newArr = [...this.state.skaly[skalyIndex]];
+
+                this.setState({
+                    sklayToShow: newArr
+                })
             }
         }
 
@@ -247,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 </div>
             )
             } else if(this.props.schowNorth === true) {
-                return <CragsList/>
+                return <CragsList sklayToShow={this.state.sklayToShow} data={this.state.data}/>
             }
         }
     }
@@ -327,10 +382,96 @@ document.addEventListener('DOMContentLoaded', function(){
     }
 
     class RouteList extends React.Component{
+        constructor(props) {
+            super(props);
+
+            this.state = {
+                myRoutes: [],
+                addShow: false
+            }
+        }
+
+        componentDidMount(){
+            let newRoutes = [...this.props.routeList];
+            this.setState({
+                myRoutes: newRoutes
+            })
+        }
+
+        handleDate = (e) => {
+            let newIndex = e.currentTarget.parentElement.parentElement.dataset.index;
+            let newRoutes = [...this.state.myRoutes];
+            newRoutes[newIndex].date = e.target.value;
+
+            this.setState({
+                myRoutes: newRoutes
+            })
+        }
+
+        handleStye = (e) => {
+            let newIndex = e.currentTarget.parentElement.parentElement.dataset.index;
+            let newRoutes = [...this.state.myRoutes];
+            newRoutes[newIndex].styl = e.target.value.toUpperCase();
+
+            this.setState({
+                myRoutes: newRoutes
+            })
+        }
+
+        handleOcena = (e) => {
+            let newIndex = e.currentTarget.parentElement.parentElement.dataset.index;
+            let newRoutes = [...this.state.myRoutes];
+            newRoutes[newIndex].ocena = e.target.value;
+
+            this.setState({
+                myRoutes: newRoutes
+            })
+        }
+
+        handleChecked = (e) => {
+            let newIndex = e.currentTarget.parentElement.parentElement.dataset.index;
+            let newRoutes = [...this.state.myRoutes];
+            newRoutes[newIndex].checked = e.target.checked;
+
+            this.setState({
+                myRoutes: newRoutes
+            })
+        }
+
+        handleSend = () => {
+
+            let dataToSend = [];
+            this.state.myRoutes.forEach( el => {
+                if (el.checked){
+                    dataToSend.push(el);
+                }
+            });
+
+
+            fetch('http://localhost:3010/moje', {
+                method: "POST",
+            body:  JSON.stringify( {"data": dataToSend} ),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+
+            });
+
+        };
+
+        handleAdd = (e) => {
+            this.setState({
+                addShow: this.state.addShow === false ? true : false
+            })
+        }
+
         render(){
 
             let rows = [];
-            this.props.routeList.forEach( (el,index) => rows.push(<tr key={index}><td>{el.name}</td><td>{el.wycena}</td><td>{el.przejscia}</td><td>{el.ocena}</td></tr>));
+            this.props.routeList.forEach( (el,index) => rows.push(<tr key={index} data-index={index}><td>{el.name}</td><td>{el.wycena}</td>
+                <td>{el.przejscia}</td><td>{el.ocena}</td><td><input onChange={this.handleDate} type="date"/></td>
+                <td><input onChange={this.handleStye}/></td><td><input onChange={this.handleOcena} type="number"/></td>
+                <td><input onChange={this.handleChecked} type="checkbox"/></td></tr>));
 
             return (
                 <div>
@@ -349,12 +490,33 @@ document.addEventListener('DOMContentLoaded', function(){
                             <th>Data przejcia</th>
                             <th>Styl</th>
                             <th>Twoja ocena</th>
-                            <th>Dodaj</th>
+                            <th>Wybierz</th>
                         </tr>
                         </thead>
                         <tbody>{rows}</tbody>
                     </table>
+                    {this.state.addShow ? <AddRoute/> : null}
+                    <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                        <button onClick={this.handleAdd} style={{margin: '30px'}}>Dodaj drogę</button>
+                        <button onClick={this.handleSend} style={{margin: '30px'}}>Dodaj przejścia</button>
+                    </div>
                 </div>
+            )
+        }
+    }
+
+    class AddRoute extends React.Component{
+        constructor(props) {
+            super(props);
+
+            this.state = {
+               routeToAdd: ''
+            }
+        }
+
+        render(){
+            return (
+                <tr><td><input/></td><td><input/></td><td><button>Zapisz</button></td></tr>
             )
         }
     }

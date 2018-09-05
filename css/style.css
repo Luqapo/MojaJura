@@ -35,7 +35,7 @@ body{
 }
 
 .upperList {
-    width: 100%;
+    width: 900px;
     height: 15%;
     overflow: scroll;
 }
@@ -93,9 +93,13 @@ a:hover{
     flex-wrap: nowrap;
     align-items: center;
     padding-bottom: 20px;
+    background: cadetblue;
 }
 
 td{
     text-align: center;
 }
 
+input{
+    width: 120px;
+}
