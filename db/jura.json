@@ -1216,5 +1216,28 @@
       ],
       "id": 3
     }
+  ],
+  "users": [
+    {
+      "data": {
+        "login": "Piotrek",
+        "password": "Mojehaslo"
+      },
+      "id": 1
+    },
+    {
+      "data": {
+        "login": "wernix",
+        "password": "wspinamy2"
+      },
+      "id": 2
+    },
+    {
+      "data": {
+        "login": "lucjan",
+        "password": "innyswiat"
+      },
+      "id": 3
+    }
   ]
 }
