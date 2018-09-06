@@ -1273,6 +1273,21 @@
         }
       ],
       "id": 7
+    },
+    {
+      "data": [
+        {
+          "name": "Triada",
+          "wycena": "VI.1+",
+          "przejscia": 0,
+          "ocena": "2",
+          "comments": [],
+          "date": "2018-09-22",
+          "styl": "FL",
+          "checked": true
+        }
+      ],
+      "id": 8
     }
   ],
   "users": [
