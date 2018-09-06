@@ -37,7 +37,7 @@ body{
 .upperList {
     width: 900px;
     height: 15%;
-    overflow: scroll;
+    overflow: auto;
 }
 
 .upperList > ul {
@@ -47,10 +47,10 @@ body{
     align-items: center;
 }
 
-.upperList ul li {
+.upperList ul li a {
     font-size: .8rem;
     line-height: 20px;
-    color: blue;
+    color: darkgray;
     padding: 5px;
     border: 1px solid black;
     display: block;
@@ -102,4 +102,28 @@ td{
 
 input{
     width: 120px;
+}
+
+button {
+    height: 25px;
+    margin: 5px 14px;
+    border: 1px solid darkblue;
+    border-radius: 10px;
+    background-color: white;
+    color: darkblue;
+    padding: 4px;
+}
+
+button:hover {
+    height: 25px;
+    margin: 5px 14px;
+    border: 1px solid darkblue;
+    border-radius: 10px;
+    background-color: darkblue;
+    color: white;
+    padding: 4px;
+}
+
+table, th, td {
+    border: 1px solid black;
 }

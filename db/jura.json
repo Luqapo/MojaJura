@@ -1215,29 +1215,86 @@
         }
       ],
       "id": 3
+    },
+    {
+      "data": [
+        {
+          "name": "Triada",
+          "wycena": "VI.1+",
+          "przejscia": 0,
+          "ocena": "5",
+          "comments": [],
+          "checked": true,
+          "date": "2018-09-22"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "data": [
+        {
+          "name": "Triada",
+          "wycena": "VI.1+",
+          "przejscia": 0,
+          "ocena": "2",
+          "comments": [],
+          "styl": "FL",
+          "checked": true,
+          "date": "2018-09-10"
+        }
+      ],
+      "id": 5
+    },
+    {
+      "data": [],
+      "id": 6
+    },
+    {
+      "data": [
+        {
+          "name": "Triada",
+          "wycena": "VI.1+",
+          "przejscia": 0,
+          "ocena": "4",
+          "comments": [],
+          "date": "2018-09-23",
+          "styl": "FL",
+          "checked": true
+        },
+        {
+          "name": "OLT Ekspress",
+          "wycena": "VI+",
+          "przejscia": 0,
+          "ocena": "2",
+          "comments": [],
+          "date": "2018-09-14",
+          "styl": "FL",
+          "checked": true
+        }
+      ],
+      "id": 7
     }
   ],
   "users": [
     {
-      "data": {
-        "login": "Piotrek",
-        "password": "Mojehaslo"
-      },
+      "login": "Piotrek",
+      "password": "Mojehaslo",
       "id": 1
     },
     {
-      "data": {
-        "login": "wernix",
-        "password": "wspinamy2"
-      },
+      "login": "wernix",
+      "password": "wspinamy2",
       "id": 2
     },
     {
-      "data": {
-        "login": "lucjan",
-        "password": "innyswiat"
-      },
+      "login": "lucjan",
+      "password": "innyswiat",
       "id": 3
+    },
+    {
+      "login": "marekd",
+      "password": "mojajura",
+      "id": 4
     }
   ]
 }

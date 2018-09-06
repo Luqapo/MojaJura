@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
         handleSerch = () => {
             console.log("szukam");
-            fetch(`http://localhost:3010/regiony?name=Pazurek`)
+            fetch(`http://localhost:3010/regiony?name_like=Pazurek`)
                 .then( resp => resp.json())
                 .then( resp => {
                     console.log(resp)
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
                 fetch('http://localhost:3010/users', {
                     method: "POST",
-                    body:  JSON.stringify( {"data": newUser} ),
+                    body:  JSON.stringify( newUser ),
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
                         console.log(resp);
                         resp.forEach( el => {
-                            if(el.data.login === user && el.data.password === password) {
+                            if(el.login === user && el.password === password) {
 
                                 this.setState({
                                     userLogged: user
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function(){
                             <th>Wycena</th>
                             <th>Styl</th>
                             <th>Nazwa</th>
-                            <th>Rejon/skałą</th>
+                            <th>Rejon/skała</th>
                             <th>Komentarz</th>
                             <th>Ocena</th>
                             <th>Edytuj</th>
@@ -269,6 +269,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 data: '',
                 skaly: '',
                 sklayToShow: '',
+                background: 'url("../img/dupa_slonia.jpg")'
 
             }
         }
@@ -330,7 +331,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 </div>
             )
         } else if(this.props.schowEast === true) {
-        return <CragsList sklayToShow={this.state.sklayToShow} data={this.state.data}/>
+        return <CragsList background={this.state.background} sklayToShow={this.state.sklayToShow} data={this.state.data}/>
     }
         }
     }
@@ -342,7 +343,8 @@ document.addEventListener('DOMContentLoaded', function(){
             this.state = {
                 data: '',
                 skaly: '',
-                sklayToShow: ''
+                sklayToShow: '',
+                background: 'url("../img/ogro.jpg")'
             }
         }
 
@@ -354,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     let list = resp[0].rejony;
                     let skalyArr = [];
                     list.forEach(el => skalyArr.push(el.skaly));
-                    let listElements = list.map( (el,index) => <li key={index}><a onClick={this.handleSchow} data-index={index} data-id="2">{el.name}</a></li>);
+                    let listElements = list.map( (el,index) => <li key={index}><a href="#" onClick={this.handleSchow} data-index={index} data-id="2">{el.name}</a></li>);
 
                     this.setState({
                         data: listElements,
@@ -390,7 +392,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
             if(this.props.schowCenter === false){
             return (
-                <div style={{flex: this.props.flexCenter,background: 'url("../img/ogrodzieniec.jpg")', backgroundSize: 'cover'}} data-id="2" className="center" onClick={this.handleClick}>
+                <div style={{flex: this.props.flexCenter,background: 'url("../img/ogro.jpg")', backgroundSize: 'cover'}} data-id="2" className="center" onClick={this.handleClick}>
                     <h1 data-id="2">Jura Środkowa</h1>
                     <div style={style}>
                         <ul>
@@ -400,7 +402,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 </div>
             )
             } else if(this.props.schowCenter === true) {
-                return <CragsList sklayToShow={this.state.sklayToShow} data={this.state.data}/>
+                return <CragsList background={this.state.background} sklayToShow={this.state.sklayToShow} data={this.state.data}/>
             }
         }
     }
@@ -412,7 +414,8 @@ document.addEventListener('DOMContentLoaded', function(){
             this.state = {
                 data: '',
                 skaly: '',
-                sklayToShow: ''
+                sklayToShow: '',
+                background: 'url("../img/Rzędkowice.jpg")'
             }
         }
 
@@ -471,7 +474,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 </div>
             )
             } else if(this.props.schowNorth === true) {
-                return <CragsList sklayToShow={this.state.sklayToShow} data={this.state.data}/>
+                return <CragsList background={this.state.background} sklayToShow={this.state.sklayToShow} data={this.state.data}/>
             }
         }
     }
@@ -639,11 +642,27 @@ document.addEventListener('DOMContentLoaded', function(){
             let rows = [];
             this.props.routeList.forEach( (el,index) => rows.push(<tr key={index} data-index={index}><td>{el.name}</td><td>{el.wycena}</td>
                 <td>{el.przejscia}</td><td>{el.ocena}</td><td><input onChange={this.handleDate} type="date"/></td>
-                <td><input onChange={this.handleStye}/></td><td><input onChange={this.handleOcena} type="number"/></td>
+                <td><select onChange={this.handleStye}>
+                        <option value=""></option>
+                        <option value="OS">OS</option>
+                        <option value="FL">FL</option>
+                        <option value="RP">RP</option>
+                        <option value="PP">PP</option>
+                    </select>
+                </td>
+                <td><select onChange={this.handleOcena}>
+                         <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </td>
                 <td><input onChange={this.handleChecked} type="checkbox"/></td></tr>));
 
             return (
-                <div>
+                <div style={{background: 'linear-gradient(to bottom, rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%)'}}>
                     <div className="upperList">
                         <ul>
                             {this.props.listToSend}
@@ -778,7 +797,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
             if(this.state.schowList === false){
             return (
-                <div style={{width: '100%'}}>
+                <div style={{width: '100%', background: this.props.background, backgroundSize: 'cover'}}>
                     <div className="upperList">
                         <ul>
                             {this.props.data}
@@ -802,7 +821,8 @@ document.addEventListener('DOMContentLoaded', function(){
             super(props);
 
             this.state = {
-                myList: false
+                myList: false,
+                userLogged: ''
             }
         }
 
