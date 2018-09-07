@@ -22,7 +22,8 @@ Technologie użyte: React, HTML5, CSS3, Webpack, Json-server.
 # ToDo:
 - dopracować zależności związane z logowaniem(możliwość rozbudowywania bazy tylko przez użytkowników z uprawnieniami, możliwość   dodawania przejść tylko przez zalogowanych użytkowników, listy przejść podpięte pod konkretnych użytkowników)
 - dopasowanie aplikacji do pracy na różnych urządzeniach - RWD (prawdopodobie zastosowanie reactstrap),
-- ogólna porpawa wyglądu aplikacji (porawa czytelnośći list, dopracowanie menu)
+- ogólna porpawa wyglądu aplikacji (porawa czytelnośći list, dopracowanie menu),
+- uruchomić aplikacje !!!
  
 
   
