@@ -1,6 +1,6 @@
 #   MojaJura
 
-Aplikacja służąca do rejstrowania swoich przjść wspinaczkowych,z założenia ma posiadać rozbudowaną bazedróg,która będzie rozbudowywana przez użytkowników.
+Aplikacja służąca do rejstrowania swoich przjść wspinaczkowych,z założenia ma posiadać rozbudowaną baze dróg.
 
 Technologie użyte: React, HTML5, CSS3, Webpack, Json-server.
 
