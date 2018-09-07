@@ -23,6 +23,9 @@ Technologie użyte: React, HTML5, CSS3, Webpack, Json-server.
 - dopasowanie aplikacji do pracy na różnych urządzeniach - RWD (prawdopodobie zastosowanie reactstrap),
 - ogólna porpawa wyglądu aplikacji (porawa czytelnośći list, dopracowanie menu),
 - uruchomić aplikacje !!!
+- hasło rozwiązać przez sume kontrolną
+- błedy nie weyrzucać w konsoli tlyko w okienku !
+- 
  
 
   
