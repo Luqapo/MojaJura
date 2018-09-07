@@ -1160,7 +1160,7 @@
           "ocena": "4",
           "comments": [],
           "date": "2018-09-22",
-          "styl": "os",
+          "styl": "OS",
           "checked": true
         },
         {
@@ -1170,7 +1170,7 @@
           "ocena": "5",
           "comments": [],
           "date": "2018-09-30",
-          "styl": "rp",
+          "styl": "RP",
           "checked": true
         }
       ],
@@ -1224,6 +1224,7 @@
           "przejscia": 0,
           "ocena": "5",
           "comments": [],
+          "styl": "FL",
           "checked": true,
           "date": "2018-09-22"
         }

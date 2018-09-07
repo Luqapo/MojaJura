@@ -35,7 +35,7 @@ body{
 }
 
 .upperList {
-    width: 900px;
+    width: 825px;
     height: 15%;
     overflow: auto;
 }
@@ -50,7 +50,8 @@ body{
 .upperList ul li a {
     font-size: .8rem;
     line-height: 20px;
-    color: darkgray;
+    color: black;
+    text-shadow: none;
     padding: 5px;
     display: block;
 }
@@ -93,6 +94,14 @@ a:hover{
     align-items: center;
     background: cadetblue;
     border-radius: 10px 10px 0 0;
+}
+
+.nav h1 {
+    color: darkblue;
+}
+
+.nav h6 {
+    text-align: center;
 }
 
 td{

@@ -58,7 +58,6 @@ class LoginForm extends React.Component{
             const user = this.state.login;
             const password = this.state.password;
 
-            console.log('loguje');
             fetch(`http://localhost:3010/users?name=wernix`)
                 .then( resp => resp.json())
                 .then( resp => {
@@ -101,7 +100,7 @@ class LoginForm extends React.Component{
             return (
                 <div>
                     <h1>{this.state.userLogged}</h1>
-                    <h4><a href="#" onClick={this.handleLogOff}>Wyloguj</a></h4>
+                    <h6><a href="#" onClick={this.handleLogOff}>Wyloguj</a></h6>
                 </div>
             )
         } else {
