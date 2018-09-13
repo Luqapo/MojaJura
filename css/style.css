@@ -56,6 +56,10 @@ body{
     display: block;
 }
 
+.upperList ul li a:hover {
+    color: red;
+}
+
 .downList {
     width: 100%;
     height: 85%;

@@ -1204,14 +1204,14 @@
     {
       "data": [
         {
-          "name": "Kant ze stałym warunem",
-          "wycena": "VI.2",
+          "name": "Ekskalibur",
+          "wycena": "VI.2+",
           "przejscia": 0,
-          "ocena": "5",
+          "ocena": "2",
           "comments": [],
-          "date": "2018-09-21",
-          "styl": "OS",
-          "checked": true
+          "checked": true,
+          "styl": "FL",
+          "date": "2018-09-16"
         }
       ],
       "id": 3
@@ -1224,71 +1224,25 @@
           "przejscia": 0,
           "ocena": "5",
           "comments": [],
-          "styl": "FL",
-          "checked": true,
-          "date": "2018-09-22"
-        }
-      ],
-      "id": 4
-    },
-    {
-      "data": [
-        {
-          "name": "Triada",
-          "wycena": "VI.1+",
-          "przejscia": 0,
-          "ocena": "2",
-          "comments": [],
-          "styl": "FL",
-          "checked": true,
-          "date": "2018-09-10"
-        }
-      ],
-      "id": 5
-    },
-    {
-      "data": [],
-      "id": 6
-    },
-    {
-      "data": [
-        {
-          "name": "Triada",
-          "wycena": "VI.1+",
-          "przejscia": 0,
-          "ocena": "4",
-          "comments": [],
-          "date": "2018-09-23",
-          "styl": "FL",
+          "styl": "OS",
           "checked": true
         },
         {
           "name": "OLT Ekspress",
           "wycena": "VI+",
           "przejscia": 0,
-          "ocena": "2",
+          "ocena": "4",
           "comments": [],
-          "date": "2018-09-14",
-          "styl": "FL",
+          "date": "2018-09-30",
+          "styl": "RP",
           "checked": true
         }
       ],
-      "id": 7
+      "id": 4
     },
     {
-      "data": [
-        {
-          "name": "Triada",
-          "wycena": "VI.1+",
-          "przejscia": 0,
-          "ocena": "2",
-          "comments": [],
-          "date": "2018-09-22",
-          "styl": "FL",
-          "checked": true
-        }
-      ],
-      "id": 8
+      "data": [],
+      "id": 5
     }
   ],
   "users": [

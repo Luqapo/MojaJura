@@ -7,7 +7,7 @@ import Nav from "./Nav.jsx";
 
 
 
-document.addEventListener('DOMContentLoaded', function(){
+
 
 
     class App extends React.Component{
@@ -52,8 +52,4 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     }
 
-    ReactDOM.render(
-        <App/>,
-        document.getElementById('app')
-    );
-});
+    export default App;
