@@ -2,7 +2,7 @@
 
 Aplikacja służąca do rejstrowania swoich przjść wspinaczkowych,z założenia ma posiadać rozbudowaną baze dróg.
 
-Technologie użyte: React, HTML5, CSS3, Webpack, Json-server.
+Technologie użyte: React, Redux HTML5, CSS3, Webpack, Json-server.
 
 # Instalacja: 
     - sklonować repozytorium,
@@ -25,7 +25,6 @@ Technologie użyte: React, HTML5, CSS3, Webpack, Json-server.
 - uruchomić aplikacje !!!
 - hasło rozwiązać przez sume kontrolną
 - błedy nie weyrzucać w konsoli tlyko w okienku !
-- 
  
 
   
