@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from 'react-redux'
 
 class LoginForm extends React.Component{
     constructor(props) {
@@ -9,8 +10,7 @@ class LoginForm extends React.Component{
             password2: '',
             addUser: false,
             login: '',
-            error: '',
-            userLogged: ''
+            error: ''
         }
     }
 
@@ -58,16 +58,14 @@ class LoginForm extends React.Component{
             const user = this.state.login;
             const password = this.state.password;
 
-            fetch(`http://localhost:3010/users?name=wernix`)
+            fetch(`http://localhost:3010/users`)
                 .then( resp => resp.json())
                 .then( resp => {
 
                     resp.forEach( el => {
                         if(el.login === user && el.password === password) {
+                            console.log('OK');
 
-                            this.setState({
-                                userLogged: user
-                            });
 
                         }
                     });
@@ -96,10 +94,10 @@ class LoginForm extends React.Component{
 
 
     render(){
-        if (this.state.userLogged){
+        if (this.props.userIn){
             return (
                 <div>
-                    <h1>{this.state.userLogged}</h1>
+                    <h1>{this.props.userIn}</h1>
                     <h6><a href="#" onClick={this.handleLogOff}>Wyloguj</a></h6>
                 </div>
             )
@@ -119,7 +117,7 @@ class LoginForm extends React.Component{
                             Hasło2:
                             <input name="password2" onChange={this.handleChange} type="password"/>
                         </label> : null}
-                        <input onClick={this.handleSubmit} type="submit" value="Wyślij"/>
+                        <input onClick={() => this.props.setUser(event, this.state.login, this.state.password) } type="submit" value="Wyślij"/>
                     </form>
                     {this.state.addUser ? null : <h6><a style={{width: '100%', textAlign: "center", display: "block"}} href="#" onClick={this.handleAdd}>Załóż konto</a></h6>}
                 </div>
@@ -129,4 +127,17 @@ class LoginForm extends React.Component{
 
 }
 
-export default LoginForm;
+const mapStateToProps = state => {
+    return {
+        userIn: state.userLogged
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+        return {
+            setUser: (event, login, pass) => dispatch({type: 'USERIN', userData: {event: event, login: login, password: pass}}),
+            deleteUser: () => dispatch({type: 'USEROF'})
+        }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
