@@ -1,5 +1,7 @@
 import React from "react";
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+
+import * as actions from './store/actions/auth.jsx';
 
 class LoginForm extends React.Component{
     constructor(props) {
@@ -24,57 +26,57 @@ class LoginForm extends React.Component{
 
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        if(this.state.addUser){
-            if(this.state.login.length > 5 && this.state.password.length > 5 && this.state.password === this.state.password2){
-                const newUser = {
-                    "login": this.state.login,
-                    "password": this.state.password
-                }
-
-
-                fetch('http://localhost:3010/users', {
-                    method: "POST",
-                    body:  JSON.stringify( newUser ),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-
-                });
-
-                this.setState({
-                    addUser: false,
-                    error: ''
-                })
-            } else {
-                console.log('Błędne dane');
-                this.setState({
-                    error: '1px solid red'
-                });
-            }
-        } else {
-
-            const user = this.state.login;
-            const password = this.state.password;
-
-            fetch(`http://localhost:3010/users`)
-                .then( resp => resp.json())
-                .then( resp => {
-
-                    resp.forEach( el => {
-                        if(el.login === user && el.password === password) {
-                            console.log('OK');
-
-
-                        }
-                    });
-                })
-                .catch( err => {
-                    console.log('Błąd!', err);
-                });
-        }
-    }
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     if(this.state.addUser){
+    //         if(this.state.login.length > 5 && this.state.password.length > 5 && this.state.password === this.state.password2){
+    //             const newUser = {
+    //                 "login": this.state.login,
+    //                 "password": this.state.password
+    //             }
+    //
+    //
+    //             fetch('http://localhost:3010/users', {
+    //                 method: "POST",
+    //                 body:  JSON.stringify( newUser ),
+    //                 headers: {
+    //                     'Content-Type': 'application/json'
+    //                 }
+    //
+    //             });
+    //
+    //             this.setState({
+    //                 addUser: false,
+    //                 error: ''
+    //             })
+    //         } else {
+    //             console.log('Błędne dane');
+    //             this.setState({
+    //                 error: '1px solid red'
+    //             });
+    //         }
+    //     } else {
+    //
+    //         const user = this.state.login;
+    //         const password = this.state.password;
+    //
+    //         fetch(`http://localhost:3010/users`)
+    //             .then( resp => resp.json())
+    //             .then( resp => {
+    //
+    //                 resp.forEach( el => {
+    //                     if(el.login === user && el.password === password) {
+    //                         console.log('OK');
+    //
+    //
+    //                     }
+    //                 });
+    //             })
+    //             .catch( err => {
+    //                 console.log('Błąd!', err);
+    //             });
+    //     }
+    // }
 
     handleAdd = () => {
         this.setState({
@@ -92,8 +94,14 @@ class LoginForm extends React.Component{
         })
     }
 
+    submitHandler = (event) => {
+        event.preventDefault();
+        this.props.onAuth(this.state.login, this.state.password);
+    }
+
 
     render(){
+
         if (this.props.userIn){
             return (
                 <div>
@@ -104,7 +112,7 @@ class LoginForm extends React.Component{
         } else {
             return (
                 <div>
-                    <form style={{width: '200px',border: this.state.error}}>
+                    <form style={{width: '200px',border: this.state.error}} onSubmit={this.submitHandler}>
                         <label>
                             Login:
                             <input name="login" onChange={this.handleChange}/>
@@ -117,7 +125,7 @@ class LoginForm extends React.Component{
                             Hasło2:
                             <input name="password2" onChange={this.handleChange} type="password"/>
                         </label> : null}
-                        <input onClick={() => this.props.setUser(event, this.state.login, this.state.password) } type="submit" value="Wyślij"/>
+                        <input type="submit" value="Wyślij"/>
                     </form>
                     {this.state.addUser ? null : <h6><a style={{width: '100%', textAlign: "center", display: "block"}} href="#" onClick={this.handleAdd}>Załóż konto</a></h6>}
                 </div>
@@ -135,8 +143,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
         return {
-            setUser: (event, login, pass) => dispatch({type: 'USERIN', userData: {event: event, login: login, password: pass}}),
-            deleteUser: () => dispatch({type: 'USEROF'})
+            onAuth: (email, password) => dispatch ( actions.auth ( email, password ))
+            // setUser: (event, login, pass) => dispatch({type: 'USERIN', userData: {event: event, login: login, password: pass}}),
+            // deleteUser: () => dispatch({type: 'USEROF'})
         }
 };
 
