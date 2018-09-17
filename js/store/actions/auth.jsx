@@ -21,14 +21,26 @@ export const authFail = (error) => {
     };
 };
 
-export const auth = (email, password) => {
-    console.log(email, password);
+export const auth = (login, password) => {
+    console.log(login, password);
     return dispatch => {
         dispatch( authStart());
         axios.get('http://localhost:3010/users')
             .then(function (response) {
                 console.log(response);
-                dispatch(authSucces(response.data));
+                let logged = false;
+
+                response.data.forEach( el => {
+                    if ( el.login ===  login && el.password === password){
+                        logged = true;
+                    }
+                })
+
+                if (logged){
+                    dispatch(authSucces(login));
+                } else {
+                    dispatch (authFail('błędne dane'));
+                };
             })
             .catch(function (error){
                 console.log(error);
