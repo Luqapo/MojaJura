@@ -1265,6 +1265,16 @@
       "login": "marekd",
       "password": "mojajura",
       "id": 4
+    },
+    {
+      "login": "Marlena",
+      "password": "kochamjure",
+      "id": 5
+    },
+    {
+      "login": "nowemoje",
+      "password": "kochamjure2",
+      "id": 6
     }
   ]
 }

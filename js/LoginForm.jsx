@@ -26,57 +26,6 @@ class LoginForm extends React.Component{
 
     }
 
-    // handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if(this.state.addUser){
-    //         if(this.state.login.length > 5 && this.state.password.length > 5 && this.state.password === this.state.password2){
-    //             const newUser = {
-    //                 "login": this.state.login,
-    //                 "password": this.state.password
-    //             }
-    //
-    //
-    //             fetch('http://localhost:3010/users', {
-    //                 method: "POST",
-    //                 body:  JSON.stringify( newUser ),
-    //                 headers: {
-    //                     'Content-Type': 'application/json'
-    //                 }
-    //
-    //             });
-    //
-    //             this.setState({
-    //                 addUser: false,
-    //                 error: ''
-    //             })
-    //         } else {
-    //             console.log('Błędne dane');
-    //             this.setState({
-    //                 error: '1px solid red'
-    //             });
-    //         }
-    //     } else {
-    //
-    //         const user = this.state.login;
-    //         const password = this.state.password;
-    //
-    //         fetch(`http://localhost:3010/users`)
-    //             .then( resp => resp.json())
-    //             .then( resp => {
-    //
-    //                 resp.forEach( el => {
-    //                     if(el.login === user && el.password === password) {
-    //                         console.log('OK');
-    //
-    //
-    //                     }
-    //                 });
-    //             })
-    //             .catch( err => {
-    //                 console.log('Błąd!', err);
-    //             });
-    //     }
-    // }
 
     handleAdd = () => {
         this.setState({
@@ -88,15 +37,18 @@ class LoginForm extends React.Component{
         if(typeof this.props.handleLogOff === 'function'){
             this.props.handleLogOff();
         }
-
-        this.setState({
-
-        })
     }
 
     submitHandler = (event) => {
         event.preventDefault();
+        if (!this.state.addUser){
         this.props.onAuth(this.state.login, this.state.password);
+        } else {
+            this.props.addUser(this.state.login, this.state.password, this.state.password2);
+            this.setState({
+                addUser: false
+            });
+        }
     }
 
 
@@ -143,9 +95,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
         return {
-            onAuth: (email, password) => dispatch ( actions.auth ( email, password ))
-            // setUser: (event, login, pass) => dispatch({type: 'USERIN', userData: {event: event, login: login, password: pass}}),
-            // deleteUser: () => dispatch({type: 'USEROF'})
+            onAuth: (email, password) => dispatch ( actions.auth ( email, password )),
+            logOff: () => dispatch ( actions.logOff()),
+            addUser: (login, password, password2) => dispatch ( actions.addUser(login, password, password2))
         }
 };
 

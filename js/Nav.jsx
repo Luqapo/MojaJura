@@ -1,5 +1,7 @@
 import React from "react";
-import LoginForm from "./LoginForm.jsx"
+import LoginForm from "./LoginForm.jsx";
+import { connect } from 'react-redux';
+import * as actions from "./store/actions/auth.jsx";
 
 class Nav extends React.Component{
     constructor(props) {
@@ -12,10 +14,12 @@ class Nav extends React.Component{
     }
 
     handleLogOff = () => {
+
         this.setState({
             loggedIn: false,
             schowLog: false
-        })
+        });
+        this.props.logOff();
     }
 
     handleList = () => {
@@ -63,4 +67,16 @@ class Nav extends React.Component{
     }
 }
 
-export default Nav;
+const mapStateToProps = state => {
+    return {
+        userIn: state.userLogged
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        logOff: () => dispatch ( actions.logOff())
+    }
+};
+
+export default connect(mapStateToProps,mapDispatchToProps) (Nav);
