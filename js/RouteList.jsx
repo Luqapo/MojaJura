@@ -1,5 +1,6 @@
 import React from "react";
 import AddRoute from "./AddRoute.jsx";
+import { connect } from 'react-redux';
 
 class RouteList extends React.Component{
     constructor(props) {
@@ -28,7 +29,7 @@ class RouteList extends React.Component{
         })
     }
 
-    handleStye = (e) => {
+    handleStlye = (e) => {
         let newIndex = e.currentTarget.parentElement.parentElement.dataset.index;
         let newRoutes = [...this.state.myRoutes];
         newRoutes[newIndex].styl = e.target.value.toUpperCase();
@@ -90,7 +91,7 @@ class RouteList extends React.Component{
         let rows = [];
         this.props.routeList.forEach( (el,index) => rows.push(<tr key={index} data-index={index}><td>{el.name}</td><td>{el.wycena}</td>
             <td>{el.przejscia}</td><td>{el.ocena}</td><td><input onChange={this.handleDate} type="date"/></td>
-            <td><select onChange={this.handleStye}>
+            <td><select onChange={this.handleStlye}>
                 <option value=""></option>
                 <option value="OS">OS</option>
                 <option value="FL">FL</option>
@@ -135,7 +136,7 @@ class RouteList extends React.Component{
                     </tbody>
                 </table>
                 <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                    <button onClick={this.handleAdd} style={{margin: '30px'}}>Dodaj drogę</button>
+                    { this.props.userIn ? <button onClick={this.handleAdd} style={{margin: '30px'}}>Dodaj drogę</button> : null}
                     <button onClick={this.handleSend} style={{margin: '30px'}}>Dodaj przejścia</button>
                 </div>
             </div>
@@ -143,4 +144,10 @@ class RouteList extends React.Component{
     }
 }
 
-export default RouteList;
+const mapStateToProps = state => {
+    return {
+        userIn: state.userLogged
+    };
+};
+
+export default connect(mapStateToProps)(RouteList);
