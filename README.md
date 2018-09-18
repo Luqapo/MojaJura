@@ -24,7 +24,7 @@ Technologie użyte: React, Redux, HTML5, CSS3, Webpack, Json-server.
 - ogólna porpawa wyglądu aplikacji (porawa czytelnośći list, dopracowanie menu),
 - uruchomić aplikacje !!!
 - hasło rozwiązać przez sume kontrolną
-- błedy nie weyrzucać w konsoli tlyko w okienku !
+- błedy nie wyrzucać w konsoli tylko w okienku !
  
 
   
