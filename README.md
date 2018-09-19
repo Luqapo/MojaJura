@@ -31,4 +31,4 @@ Technologie użyte: React, Redux, HTML5, CSS3, Webpack, Json-server.
 - błedy nie wyrzucać w konsoli tylko w okienku !
  
 
-  
+  ![alt text](https://github.com/Luqapo/MojaJura/blob/master/img/Zrzut%20ekranu%20z%202018-09-19%2016-19-33%20%5Bwww.imagesplitter.net%5D.jpeg)
