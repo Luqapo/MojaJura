@@ -2,6 +2,10 @@
 
 Aplikacja służąca do rejstrowania swoich przjść wspinaczkowych,z założenia ma posiadać rozbudowaną baze dróg.
 
+![Alt text](
+      MojaJura/img/Zrzut ekranu z 2018-09-19 16-18-51 [www.imagesplitter.net].jpeg
+    )
+
 Technologie użyte: React, Redux, HTML5, CSS3, Webpack, Json-server.
 
 # Instalacja: 
