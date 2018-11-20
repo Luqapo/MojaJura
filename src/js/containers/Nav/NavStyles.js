@@ -20,7 +20,7 @@ export const styles = theme => ({
         display: 'flex',
         justifyContent: 'center',
         [theme.breakpoints.up('sm')]: {
-          width: '25%',
+          width: '33%',
         },
       },
     menuButton: {
@@ -67,5 +67,18 @@ export const styles = theme => ({
             width: 200,
           },
         },
+    },
+    sectionDesktop: {
+      display: 'none',
+      [theme.breakpoints.up('sm')]: {
+        display: 'flex',
+        width: '100%',
+      },
+    },
+    sectionMobile: {
+      display: 'flex',
+      [theme.breakpoints.up('sm')]: {
+        display: 'none',
+      },
     },
   });
