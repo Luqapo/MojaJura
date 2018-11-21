@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
 
 import * as actions from '../../store/actions/auth.jsx';
 import { styles } from './LoginFormStyles';
@@ -55,34 +56,40 @@ class LoginForm extends React.Component{
         const { classes } = this.props;
         const openModal = Boolean(!this.props.userIn);
         const addAcount = [
-            <input key="input1" className="InputElement" name="password2" onChange={this.handleChange} type="password" placeholder="Powtórz hasło"/>,
-            <input key="input2" className="InputElement" name="email" onChange={this.handleChange} type="email" placeholder="Email"/>
+            <Input key="input1" name="password2" onChange={this.handleChange} type="password" placeholder="Powtórz hasło"/>,
+            <Input key="input2" name="email" onChange={this.handleChange} type="email" placeholder="Email"/>
         ];
-        if (this.props.userIn){
-            return null;
-        } else {
-            return (
+        return (
                     <Modal
-                        aria-labelledby="simple-modal-title"
-                        aria-describedby="simple-modal-description"
+                        aria-labelledby="login-modal-title"
+                        aria-describedby="login-modal-description"
                         open={openModal}
                         onClose={this.props.showHandle}
                     >
                         <div className={classes.paper}>
-                            <form style={{border: this.state.error}} className="Input" onSubmit={this.submitHandler}>
-                                    <input className="InputElement" name="login" onChange={this.handleChange} placeholder="Login"/>
-                                    <input className="InputElement" name="password" onChange={this.handleChange} type="password" placeholder="Password"/>
-                                {this.state.addUser ? 
-                                    addAcount
-                                : null}
-                                <input className="InputElement" type="submit" value="Wyślij"/>
+                            <form onSubmit={this.submitHandler}>
+                                    <Input name="login" 
+                                           onChange={this.handleChange} 
+                                           placeholder="Login"/>
+                                    <Input name="password" 
+                                           onChange={this.handleChange} 
+                                           type="password" 
+                                           placeholder="Password"/>
+                                {this.state.addUser ? addAcount : null}
+                                <div className={classes.buttonCenter}>
+                                    <Button type="submit">Wyślij</Button>
+                                </div>
                             </form>
-                            {this.state.addUser ? null : <h6><button style={{width: '90%', textAlign: "center", display: "block"}} onClick={this.handleAdd}>Załóż konto</button></h6>}
-                            <h6><button style={{width: '90%', textAlign: "center", display: "block"}} onClick={this.props.showHandle}>Anuluj</button></h6>
+                            {this.state.addUser ? null : 
+                                <div className={classes.buttonCenter}>
+                                    <Button onClick={this.handleAdd}>Załóż konto</Button>
+                                </div>}
+                            <div className={classes.buttonCenter}>
+                                <Button onClick={this.props.showHandle}>Anuluj</Button>
+                            </div>
                         </div>
                     </Modal>
             )
-        }
     }
 
 }
