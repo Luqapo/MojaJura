@@ -7,7 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
-import MoreIcon from '@material-ui/icons/MoreVert';
+import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
@@ -87,7 +87,7 @@ class Nav extends React.Component{
 
     render(){
         const { classes } = this.props;
-        const { anchorEl, mobileMoreAnchorEl } = this.state;
+        const { mobileMoreAnchorEl } = this.state;
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
         const MyJura = props => <Link to="/" {...props}/>
         const MyList = props => <Link to="/mylist" {...props}/>
@@ -124,15 +124,14 @@ class Nav extends React.Component{
                                 </div>
                 </div>
               </MenuItem>
-              <MenuItem onClick={this.handleProfileMenuOpen}>
+              <MenuItem onClick={this.handleProfileMenuOpen}
+                        onClick={this.handleMobileMenuClose}>>
                     <div className={classes.upBarItem}>    
-                        { this.state.schowLog ? <LoginForm handleLogOff={this.handleLogOff} 
-                                                            show={this.state.schowLog} 
-                                                            showHandle={this.handleLogin}/> : 
-                                                <Button color="inherit" size="large"
-                                                        onClick={this.handleLogin}>
-                                                        Login</Button>}
-                                </div>
+                        <Button color="inherit" size="large"
+                                onClick={this.handleLogin}>
+                            Login
+                        </Button>
+                    </div>
               </MenuItem>
             </Menu>
           );
@@ -142,7 +141,7 @@ class Nav extends React.Component{
                     <Toolbar>
                          <div className={classes.sectionMobile}>
                             <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                                <MoreIcon />
+                                <MenuIcon />
                             </IconButton>
                         </div>
                         <div className={classes.upBar}>
@@ -151,6 +150,9 @@ class Nav extends React.Component{
                                     Moja Jura
                                 </Button>
                             </div>
+                            { this.state.schowLog ? <LoginForm handleLogOff={this.handleLogOff} 
+                                                                        show={this.state.schowLog} 
+                                                                        showHandle={this.handleLogin}/> : null}
                             <div className={classes.sectionDesktop}>
                                 <div className={classes.upBarItem}>
                                     <div className={classes.search}>
@@ -173,9 +175,15 @@ class Nav extends React.Component{
                                     </Button>
                                 </div>
                                 <div className={classes.upBarItem}>    
-                                    { this.state.schowLog ? <LoginForm handleLogOff={this.handleLogOff} 
-                                                                        show={this.state.schowLog} 
-                                                                        showHandle={this.handleLogin}/> : 
+                                    { this.state.schowLog ? (
+                                                                <div>
+                                                                    <h1>{this.props.userIn}</h1>
+                                                                    <Button color="inherit" size="large"
+                                                                        onClick={this.handleLogOff}>
+                                                                        Login
+                                                                    </Button>
+                                                                </div>
+                                                            ) : 
                                                                 <Button color="inherit" size="large"
                                                                         onClick={this.handleLogin}>
                                                                 Login</Button>}
