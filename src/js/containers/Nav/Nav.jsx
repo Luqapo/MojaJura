@@ -17,6 +17,7 @@ import Button from '@material-ui/core/Button';
 import LoginForm from "../Authorization/LoginForm.jsx";
 import * as actions from "../../store/actions/auth.jsx";
 import { styles } from './NavStyles'
+import { url } from '../../config/config';
 
 class Nav extends React.Component{
     constructor(props) {
@@ -47,10 +48,12 @@ class Nav extends React.Component{
     }
 
     handleSerch = (e) => {
-        console.log(e.target.value);
         this.setState({
             search: e.target.value
         });
+        if(e.key === 'Enter'){
+            this.handleSubmit(e);
+        }
     }
 
     handleMobileMenuOpen = event => {
@@ -63,7 +66,7 @@ class Nav extends React.Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        fetch('https://mojajura.herokuapp.com/api/search', {
+        fetch(`${url}/api/search`, {
                 method : 'POST',
                 body : JSON.stringify({
                     search: this.state.search
@@ -112,16 +115,16 @@ class Nav extends React.Component{
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
-                                </div>
+                        </div>
                                     <InputBase
                                         placeholder="Search…"
                                         classes={{
                                             root: classes.inputRoot,
                                             input: classes.inputInput,
                                         }}
-                                        onChange={this.handleSerch}
+                                        onKeyPress={this.handleSerch}
                                         />
-                                </div>
+                    </div>
                 </div>
               </MenuItem>
               <MenuItem onClick={this.handleProfileMenuOpen}
@@ -165,7 +168,7 @@ class Nav extends React.Component{
                                                 root: classes.inputRoot,
                                                 input: classes.inputInput,
                                             }}
-                                            onChange={this.handleSerch}
+                                            onKeyPress={this.handleSerch}
                                         />
                                     </div>
                                 </div>

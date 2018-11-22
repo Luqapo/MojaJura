@@ -40,7 +40,7 @@ class CragsList extends Component{
 
     render(){
 
-        let newArr = [...this.props.sklayToShow];
+        let newArr = [...this.props.history.location.state];
 
         let newList = newArr.map( el => <li key={el._id}>
                                             <a onClick={this.handleList} 
@@ -50,14 +50,7 @@ class CragsList extends Component{
 
         if(this.state.schowList === false){
             return (
-                <div style={{width: '100%',
-                        background: this.props.background,
-                        backgroundSize: 'cover'}}>
-                    <div className="upperList">
-                            <ul>
-                            {this.props.data}
-                            </ul>
-                    </div>
+                <div>
                     <div className="downList">
                             <ul>
                             {newList}

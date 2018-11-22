@@ -50,7 +50,8 @@ export const styles = theme => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-      },inputRoot: {
+      },
+      inputRoot: {
         color: 'inherit',
         width: '100%',
       },
