@@ -60,13 +60,11 @@ class CragsList extends Component{
                             )
         if(this.state.schowList === false){
             return (
-                <div>
                     <div className={classes.myJura}>
                             <ul>
                             {newList}
                             </ul>
                     </div>
-                </div>
         )
         } else {
             return <RouteList 

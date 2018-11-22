@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import MojaJura from "./containers/MojaJura/MojaJura.jsx";
+import MojaJura from "./components/MojaJura/MojaJura.jsx";
 import MyList from "./MyList.jsx";
 import Nav from "./containers/Nav/Nav.jsx";
 import SearchResult from './SearchResult/SearchResult.jsx';

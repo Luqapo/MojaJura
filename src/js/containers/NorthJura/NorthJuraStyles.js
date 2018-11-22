@@ -2,6 +2,7 @@ export const styles = theme => ({
     myJura: {
     width: '100%',
     minHeight: '93vh',
+    marginTop: '55px',
     justifyContent: 'center',
     display: 'flex',
     flexDirection: 'column',

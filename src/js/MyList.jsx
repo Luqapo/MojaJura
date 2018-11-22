@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { url } from './config/config';
 
 class MyList extends React.Component{
     constructor(props) {
@@ -11,9 +12,8 @@ class MyList extends React.Component{
         }
     }
 
-
     componentDidMount() {
-        fetch(`https://mojajura.herokuapp.com/api/ascents/${this.props.userIn}`)
+        fetch(`${url}/api/ascents/${this.props.userIn}`)
             .then( resp => resp.json())
             .then( resp => {
                 
