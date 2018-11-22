@@ -7,7 +7,7 @@
 body{
     background-color: #eeeeee;
     width: 100%;
-    height: 94vh;
+    height: 100%;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -15,91 +15,6 @@ body{
     max-width: 1140px;
     height: 100%;
     margin: 0px auto;
-}
-
-.mainContainer{
-    display: flex;
-}
-
-.north, .center, .east{
-    width: 32%;
-    height: 80vh;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    transition: .5s;
-    color: white;
-    text-shadow: 1px 1px #000, 1px -1px #000, -1px 1px #000, -1px -1px #000;
-    position: relative;
-}
-
-.upperList {
-    width: 825px;
-    height: 15%;
-    overflow: auto;
-}
-
-.upperList > ul {
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: nowrap;
-    align-items: center;
-}
-
-.upperList ul li a {
-    font-size: .8rem;
-    line-height: 20px;
-    color: black;
-    text-shadow: none;
-    padding: 5px;
-    display: block;
-}
-
-.upperList ul li a:hover {
-    color: red;
-}
-
-.downList {
-    width: 100%;
-    height: 85%;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    transition: .5s;
-    color: white;
-    text-shadow: 1px 1px #000, 1px -1px #000, -1px 1px #000, -1px -1px #000;
-}
-
-ul{
-    list-style: none;
-}
-
-li{
-    font-size: 1.5rem;
-}
-
-.nav{
-    height: 80px;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: nowrap;
-    align-items: center;
-    background: cadetblue;
-    border-radius: 10px 10px 0 0;
-}
-
-.nav h6 {
-    text-align: center;
-}
-
-td{
-    text-align: center;
-}
-
-table, th, td {
-    border: 1px solid black;
 }
 
 .SearchResults {

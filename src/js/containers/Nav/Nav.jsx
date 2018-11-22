@@ -10,12 +10,12 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-
 import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
 
 import LoginForm from "../Authorization/LoginForm.jsx";
 import * as actions from "../../store/actions/auth.jsx";
+
 import { styles } from './NavStyles'
 import { url } from '../../config/config';
 
@@ -69,7 +69,7 @@ class Nav extends React.Component{
         fetch(`${url}/api/search`, {
                 method : 'POST',
                 body : JSON.stringify({
-                    search: this.state.search
+                    search: e.target.value
                 }),
                 headers: {
                     'Content-Type': 'application/json',
@@ -82,10 +82,7 @@ class Nav extends React.Component{
             .catch( error => {
                     console.log(error);
                 })
-            this.setState({
-                search: ''
-            })
-               
+            this.handleMobileMenuClose();
     }
 
     render(){
@@ -130,10 +127,16 @@ class Nav extends React.Component{
               <MenuItem onClick={this.handleProfileMenuOpen}
                         onClick={this.handleMobileMenuClose}>>
                     <div className={classes.upBarItem}>    
-                        <Button color="inherit" size="large"
-                                onClick={this.handleLogin}>
-                            Login
-                        </Button>
+                    { this.state.schowLog ?  <Button color="inherit" size="large"
+                                                    onClick={this.handleLogOff}>
+                                                    Logoff
+                                             </Button>
+                                          : 
+                                             <Button color="inherit" 
+                                                     size="large"
+                                                     onClick={this.handleLogin}>
+                                                Login
+                                            </Button>}
                     </div>
               </MenuItem>
             </Menu>
@@ -168,7 +171,7 @@ class Nav extends React.Component{
                                                 root: classes.inputRoot,
                                                 input: classes.inputInput,
                                             }}
-                                            onKeyPress={this.handleSerch}
+                                            onKeyDown={this.handleSerch}
                                         />
                                     </div>
                                 </div>
@@ -178,15 +181,11 @@ class Nav extends React.Component{
                                     </Button>
                                 </div>
                                 <div className={classes.upBarItem}>    
-                                    { this.state.schowLog ? (
-                                                                <div>
-                                                                    <h1>{this.props.userIn}</h1>
-                                                                    <Button color="inherit" size="large"
-                                                                        onClick={this.handleLogOff}>
-                                                                        Login
-                                                                    </Button>
-                                                                </div>
-                                                            ) : 
+                                    { this.state.schowLog ?     <Button color="inherit" size="large"
+                                                                    onClick={this.handleLogOff}>
+                                                                    Logoff
+                                                                </Button>
+                                                                : 
                                                                 <Button color="inherit" size="large"
                                                                         onClick={this.handleLogin}>
                                                                 Login</Button>}

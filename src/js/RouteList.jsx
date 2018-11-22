@@ -174,11 +174,6 @@ class RouteList extends React.Component{
 
         return (
             <div style={{background: 'linear-gradient(to bottom, rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%)'}}>
-                <div className="upperList">
-                    <ul>
-                        {this.props.listToSend}
-                    </ul>
-                </div>
                 <table style={{width: '98%', margin: '2px', borderCollapse: "collapse"}} className="green">
                     <thead>
                     <tr>

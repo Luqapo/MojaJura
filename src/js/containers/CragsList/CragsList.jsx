@@ -1,5 +1,11 @@
 import React, {Component} from "react";
-import RouteList from "./RouteList.jsx";
+import RouteList from "../../RouteList.jsx";
+
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+
+import { styles } from './CragsListStyles';
+import { url } from '../../config/config';
 
 class CragsList extends Component{
     constructor(props) {
@@ -15,15 +21,15 @@ class CragsList extends Component{
     }
 
     handleList = (e) => {
-        let skalaName = e.target.dataset.skala;
-        let newArr = [...this.props.sklayToShow];
+        let skalaName = e.currentTarget.dataset.skala;
+        let newArr = [...this.props.history.location.state];
         let newRejon = newArr[0].rejon
         let newList = newArr.map( el => <li key={el._id}>
                                             <a onClick={this.handleList} 
                                             href="#" data-skala={el.skala}>{el.skala}</a>
                                         </li>);
 
-        fetch(`https://mojajura.herokuapp.com/api/skaly/${skalaName}`)
+        fetch(`${url}/api/skaly/${skalaName}`)
             .then( resp => resp.json())
             .then( resp => {
                     this.setState({
@@ -39,19 +45,23 @@ class CragsList extends Component{
     }
 
     render(){
-
+        const { classes } = this.props;
         let newArr = [...this.props.history.location.state];
 
-        let newList = newArr.map( el => <li key={el._id}>
-                                            <a onClick={this.handleList} 
-                                            href="#" data-skala={el.skala}>{el.skala}</a>
-                                        </li>)
-
-
+        let newList = newArr.map( el => (
+                            <div key={el._id} className={classes.buttonCenter}>
+                                <Button
+                                    onClick={this.handleList} 
+                                    data-skala={el.skala}
+                                    variant="outlined">
+                                    {el.skala}
+                                </Button>
+                            </div>)
+                            )
         if(this.state.schowList === false){
             return (
                 <div>
-                    <div className="downList">
+                    <div className={classes.myJura}>
                             <ul>
                             {newList}
                             </ul>
@@ -68,4 +78,4 @@ class CragsList extends Component{
     }
 }
 
-export default CragsList;
+export default withStyles(styles)(CragsList);

@@ -3,21 +3,21 @@ import React from "react";
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
-import { styles } from './EastJuraStyles';
+import { styles } from './NorthJuraStyles';
 
 import { url } from '../../config/config';
 
-class EastJura extends React.Component{
+class NorthJura extends React.Component{
     constructor(props) {
         super(props);
 
         this.state = {
-            data: '',
+            data: ''
         }
     }
 
     componentDidMount() {
-        fetch(`${url}/api/regiony/east`)
+        fetch(`${url}/api/regiony/north`)
             .then( resp => resp.json())
             .then( resp => {
                 this.setState({
@@ -30,7 +30,7 @@ class EastJura extends React.Component{
     }
 
     handleSchow = (e)=> {
-            let rejonName = e.currentTarget.dataset.rejon;
+        let rejonName = e.currentTarget.dataset.rejon;
 
             fetch(`${url}/api/rejony/${rejonName}`)
             .then( resp => resp.json())
@@ -40,6 +40,7 @@ class EastJura extends React.Component{
     }
 
     render(){
+
         const { classes } = this.props;
         const data = [...this.state.data];
         let listElements = data.map( el => (
@@ -47,19 +48,20 @@ class EastJura extends React.Component{
                             <Button  
                                 onClick={this.handleSchow} 
                                 data-rejon={el.rejon}
-                                variant="outlined">
+                                variant="outlined"
+                                color="primary">
                                 {el.rejon}
                             </Button>
                         </div>)
                     );
             return (
-                <div style={{background: 'url("../img/dupa_slonia.jpg")', 
-                             backgroundSize: 'cover'}}
+                <div style={{background: 'url("../img/Rzędkowice.jpg")',
+                             backgroundSize: 'cover'}} 
                              className={classes.myJura}>
-                            {listElements}
+                             {listElements}
                 </div>
             )
     }
 }
 
-export default withStyles(styles)(EastJura);
+export default withStyles(styles)(NorthJura);

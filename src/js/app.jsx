@@ -8,9 +8,9 @@ import MyList from "./MyList.jsx";
 import Nav from "./containers/Nav/Nav.jsx";
 import SearchResult from './SearchResult/SearchResult.jsx';
 import EastJura from './containers/EastJura/EastJura.jsx';
-import CenterJura from './CenterJura.jsx';
-import NorthJura from './NorthJura.jsx';
-import CragsList from './CragsList.jsx';
+import CenterJura from './containers/CenterJura/CenterJura.jsx';
+import NorthJura from './containers/NorthJura/NorthJura.jsx';
+import CragsList from './containers/CragsList/CragsList.jsx';
 
     class App extends React.Component{
 

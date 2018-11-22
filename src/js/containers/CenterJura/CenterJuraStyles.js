@@ -12,6 +12,6 @@ export const styles = theme => ({
         height: '40px',
         display: 'flex',
         justifyContent: 'center',
-        margin: '5px 0',
+        margin: '10px 0',
     }
   });
