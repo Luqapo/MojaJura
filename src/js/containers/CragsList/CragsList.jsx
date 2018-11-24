@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import RouteList from "../../RouteList.jsx";
 
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
@@ -12,7 +11,6 @@ class CragsList extends Component{
         super(props);
 
         this.state = {
-            schowList: false,
             routesList: '',
             listToSend: '',
             skala: '',
@@ -32,13 +30,7 @@ class CragsList extends Component{
         fetch(`${url}/api/skaly/${skalaName}`)
             .then( resp => resp.json())
             .then( resp => {
-                    this.setState({
-                        routeList: resp,
-                        schowList: true,
-                        listToSend: newList,
-                        skala: skalaName,
-                        rejon: newRejon
-                    })
+                    this.props.history.push('/routes', resp);
             })   
 
         
@@ -58,7 +50,6 @@ class CragsList extends Component{
                                 </Button>
                             </div>)
                             )
-        if(this.state.schowList === false){
             return (
                     <div className={classes.myJura}>
                             <ul>
@@ -66,13 +57,6 @@ class CragsList extends Component{
                             </ul>
                     </div>
         )
-        } else {
-            return <RouteList 
-                        routeList={this.state.routeList} 
-                        listToSend={this.state.listToSend} 
-                        skalaName={this.state.skala}
-                        rejonName={this.state.rejon}/>
-        }
     }
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import AddRoute from "./AddRoute.jsx";
+import AddRoute from "../../AddRoute.jsx";
 import { connect } from 'react-redux';
 
 class RouteList extends React.Component{
@@ -13,7 +13,7 @@ class RouteList extends React.Component{
     }
 
     componentDidMount(){
-        let newRoutes = this.props.routeList.map(a => ({ ...a }));
+        let newRoutes = this.props.history.location.state.map(a => ({ ...a }));
         this.setState({
             myRoutes: newRoutes
         })
@@ -145,7 +145,7 @@ class RouteList extends React.Component{
     render(){
 
         let rows = [];
-        this.props.routeList.forEach( el => rows.push(<tr key={el._id} 
+        this.props.history.location.state.forEach( el => rows.push(<tr key={el._id} 
                                                           data-droga={el.droga}>
             <td>{el.droga}</td>
             <td>{el.wycena}</td>

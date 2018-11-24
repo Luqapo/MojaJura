@@ -60,6 +60,14 @@ class MyList extends React.Component{
                 primary: true
             },
             {
+                key: 'rejon',
+                label: 'Rejon'
+            },
+            {
+                key: 'skala',
+                label: 'Skała'
+            },
+            {
                 key: 'comment',
                 label: 'Komentarz'
             },
@@ -75,6 +83,8 @@ class MyList extends React.Component{
                                             wycena: el.wycena,
                                             styl: el.styl,
                                             nazwa: el.droga,
+                                            rejon: el.rejon,
+                                            skala: el.skala,
                                             comment: el.comment,
                                             stars: el.towjaOcena
         }))

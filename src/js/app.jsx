@@ -11,6 +11,7 @@ import EastJura from './containers/EastJura/EastJura.jsx';
 import CenterJura from './containers/CenterJura/CenterJura.jsx';
 import NorthJura from './containers/NorthJura/NorthJura.jsx';
 import CragsList from './containers/CragsList/CragsList.jsx';
+import RouteList from "./containers/RouteList/RouteList.jsx";
 
     class App extends React.Component{
 
@@ -26,6 +27,7 @@ import CragsList from './containers/CragsList/CragsList.jsx';
                             <Route path="/center" component={CenterJura} />
                             <Route path="/north" component={NorthJura} />
                             <Route path="/crags" component={CragsList} />
+                            <Route path="/routes" component={RouteList} />
                             <Route path="/" exact component={MojaJura} />
                         </Switch>
                     </div>
