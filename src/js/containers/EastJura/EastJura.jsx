@@ -47,6 +47,7 @@ class EastJura extends React.Component{
                             <Button  
                                 onClick={this.handleSchow} 
                                 data-rejon={el.rejon}
+                                color="inherit"
                                 variant="outlined">
                                 {el.rejon}
                             </Button>

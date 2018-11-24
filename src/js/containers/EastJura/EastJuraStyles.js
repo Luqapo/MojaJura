@@ -1,18 +1,21 @@
 export const styles = theme => ({
     myJura: {
     width: '100%',
-    height: '93vh',
-    marginTop: '55px',
+    minHeight: '93vh',
+    marginTop: '48px',
     justifyContent: 'center',
     display: 'flex',
     flexDirection: 'column',
     textAlign: 'center',
+    [theme.breakpoints.up('sm')]: {
+        marginTop: '64px',
+      },
     },
     buttonCenter: {
         width: '100%',
-        height: '40px',
+        height: '50px',
         display: 'flex',
         justifyContent: 'center',
-        margin: '5px 0',
+        margin: '2px 0',
     }
   });

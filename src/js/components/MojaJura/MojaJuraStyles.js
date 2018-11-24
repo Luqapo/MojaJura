@@ -2,7 +2,7 @@ export const styles = theme => ({
     root: {
       width: '100%',
       height: '93vh',
-      marginTop: '55px',
+      marginTop: '48px',
       [theme.breakpoints.up('sm')]: {
         display: 'flex'
       },
