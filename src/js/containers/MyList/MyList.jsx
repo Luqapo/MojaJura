@@ -3,13 +3,7 @@ import { connect } from "react-redux";
 import ResponsiveTable from 'material-ui-next-responsive-table'
 
 import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 
 import { styles } from './MyListStyles';
 import { url } from '../../config/config';
@@ -44,7 +38,7 @@ class MyList extends React.Component{
         let columns = [
             {
                 key: 'id',
-                label: 'ID'
+                label: 'Numer'
             },
             {
                 key: 'data',
@@ -76,7 +70,7 @@ class MyList extends React.Component{
         ];
         const myList = [...this.state.list];
         myList.forEach( (el,index) => rows.push({
-                                            id: index,
+                                            id: index + 1,
                                             data: el.date,
                                             wycena: el.wycena,
                                             styl: el.styl,
