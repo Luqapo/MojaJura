@@ -1,6 +1,18 @@
 import React from "react";
 import AddRoute from "../../AddRoute.jsx";
+import RouteListExpansion from './RouteListExpanansion/RouteListExpansion.jsx';
 import { connect } from 'react-redux';
+
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
+
+import { styles } from './RouteListStyles';
 
 class RouteList extends React.Component{
     constructor(props) {
@@ -143,7 +155,7 @@ class RouteList extends React.Component{
     }
 
     render(){
-
+        const { classes } = this.props;
         let rows = [];
         this.props.history.location.state.forEach( el => rows.push(<tr key={el._id} 
                                                           data-droga={el.droga}>
@@ -151,30 +163,60 @@ class RouteList extends React.Component{
             <td>{el.wycena}</td>
             <td>{el.przejscia}</td>
             <td>{el.ocena}</td>
-            <td><textarea onChange={this.handleComment}/></td>
-            <td><input onChange={this.handleDate} type="date"/></td>
-            <td><select onChange={this.handleStlye}>
-                <option value=""></option>
-                <option value="OS">OS</option>
-                <option value="FL">FL</option>
-                <option value="RP">RP</option>
-                <option value="PP">PP</option>
-            </select>
+            <td><TextField onChange={this.handleComment} placeholder="Komentarz"/></td>
+            <td>
+                <TextField 
+                    id="date" 
+                    label="Data przejścia" 
+                    onChange={this.handleDate} type="date"
+                    InputLabelProps={{
+                        shrink: true,
+                      }}/></td>
+            <td>
+                <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="style">Styl</InputLabel>
+                    <Select 
+                        onChange={this.handleStlye}
+                        inputProps={{
+                            name: 'style',
+                            id: 'style',
+                          }}>
+                        <MenuItem value="">Wybierz</MenuItem>
+                        <MenuItem value="OS">OS</MenuItem>
+                        <MenuItem value="FL">FL</MenuItem>
+                        <MenuItem value="RP">RP</MenuItem>
+                        <MenuItem value="PP">PP</MenuItem>
+                    </Select>
+                </FormControl>
             </td>
-            <td><select onChange={this.handleOcena}>
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
+            <td>
+                <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="ocena">Ocena</InputLabel>
+                    <Select 
+                        onChange={this.handleOcena}
+                        inputProps={{
+                            name: 'ocena',
+                            id: 'ocena',
+                          }}>
+                        <MenuItem value="">Oceń</MenuItem>
+                        <MenuItem value="1">1</MenuItem>
+                        <MenuItem value="2">2</MenuItem>
+                        <MenuItem value="3">3</MenuItem>
+                        <MenuItem value="4">4</MenuItem>
+                        <MenuItem value="5">5</MenuItem>
+                    </Select>
+                </FormControl>
             </td>
-            <td><input onChange={this.handleChecked} type="checkbox"/></td></tr>));
+            <td><Checkbox 
+                    onChange={this.handleChecked}
+                    tabIndex={-1}
+                    disableRipple />
+            </td>
+        </tr>));
 
         return (
-            <div style={{background: 'linear-gradient(to bottom, rgba(242,249,254,1) 0%,rgba(214,240,253,1) 100%)'}}>
-                <table style={{width: '98%', margin: '2px', borderCollapse: "collapse"}} className="green">
+            <Paper className={classes.root}>
+                <table style={{width: '98%', margin: '2px', borderCollapse: "collapse"}} className={classes.sectionDesktop}>
                     <thead>
                     <tr>
                         <th>Nazwa</th>
@@ -199,7 +241,16 @@ class RouteList extends React.Component{
                     { this.props.userIn ? <button onClick={this.handleSend} 
                                                 style={{margin: '30px'}}>Dodaj przejścia</button> : null }
                 </div>
-            </div>
+                <div className={classes.sectionMobile}>
+                    {this.props.history.location.state.map( route => { 
+                       return  <RouteListExpansion
+                            key={route._id}
+                            name={route.droga}
+                            wycena={route.wycena}
+                            przejscia={route.przejscia}/>
+                        })}
+                </div>
+            </Paper>
         )
     }
 }
@@ -210,4 +261,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(RouteList);
+export default connect(mapStateToProps)(withStyles(styles)((RouteList)));
