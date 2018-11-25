@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
@@ -14,7 +13,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
 
 import { styles } from './RouteListExpansionStyles';
 
@@ -35,19 +33,22 @@ function RouteListExpansion(props) {
             </div>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={classes.details}>
-            <div className={classes.column}>
-                <TextField onChange={props.handleComment} placeholder="Komentarz"/>
+            <div className={classes.columnDown}>
+                <TextField 
+                  onChange={props.handleComment}
+                  className={classes.formControl} 
+                  placeholder="Komentarz"/>
             </div>
-            <div className={classes.column}>
+            <div className={classes.columnDown}>
                 <TextField 
                     id="date" 
                     label="Data przejścia" 
                     onChange={props.handleDate} type="date"
                     InputLabelProps={{
                         shrink: true,
-                      }}/>/>
+                      }}/>
             </div>
-            <div className={classes.column}>
+            <div className={classes.columnDown}>
                 <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="style">Styl</InputLabel>
                     <Select 
@@ -64,7 +65,7 @@ function RouteListExpansion(props) {
                     </Select>
                 </FormControl>
             </div>
-            <div className={classes.column}>
+            <div className={classes.columnDown}>
                 <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="ocena">Ocena</InputLabel>
                     <Select 
@@ -82,22 +83,13 @@ function RouteListExpansion(props) {
                     </Select>
                 </FormControl>
             </div>
-            <div className={classes.column}>
-                <Checkbox 
-                    onChange={props.handleChecked}
-                    tabIndex={-1}
-                    disableRipple />
+            <div className={classes.columnDown}>
+              <Button variant="outlined" color="primary">
+                Dodaj
+              </Button>
             </div>
           </ExpansionPanelDetails>
           <Divider />
-          <ExpansionPanelActions>
-            <Button size="small" color="secondary">
-                Cancel
-            </Button>
-            <Button size="small" color="primary">
-              Save
-            </Button>
-          </ExpansionPanelActions>
         </ExpansionPanel>
       </div>
     );

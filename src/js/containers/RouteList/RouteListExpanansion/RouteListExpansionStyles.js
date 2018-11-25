@@ -15,10 +15,16 @@ export const styles = theme => ({
       width: 20,
     },
     details: {
+      width: "100%",
+      display: 'flex',
+      flexWrap: 'wrap',
       alignItems: 'center',
     },
     column: {
       flexBasis: '33.33%',
+    },
+    columnDown: {
+      // flexBasis: '25%',
     },
     helper: {
       borderLeft: `2px solid ${theme.palette.divider}`,
@@ -30,6 +36,10 @@ export const styles = theme => ({
       '&:hover': {
         textDecoration: 'underline',
       },
+    },
+    formControl: {
+      margin: theme.spacing.unit,
+      minWidth: 120,
     },
   });
   

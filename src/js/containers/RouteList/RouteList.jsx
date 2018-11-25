@@ -10,7 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
+import Button from '@material-ui/core/Button';
 
 import { styles } from './RouteListStyles';
 
@@ -19,95 +19,24 @@ class RouteList extends React.Component{
         super(props);
 
         this.state = {
-            myRoutes: [],
+            date: '',
+            style: '',
+            ocena: '',
+            comment: '',
             addShow: false,
         }
     }
 
-    componentDidMount(){
-        let newRoutes = this.props.history.location.state.map(a => ({ ...a }));
-        this.setState({
-            myRoutes: newRoutes
-        })
-    }
-
-    handleDate = (e) => {
-        let drogaName = e.currentTarget.parentElement.parentElement.dataset.droga;
-        let newRoutes = [...this.state.myRoutes];
-        let newIndex = null;
-
-        newRoutes.forEach((el,index) => {
-            if(el.droga === drogaName){
-                newIndex = index;
-            }
-        })
-
-        newRoutes[newIndex].date = e.target.value;
+    handleChage = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
 
         this.setState({
-            myRoutes: newRoutes
-        })
-    }
-
-    handleStlye = (e) => {
-        let drogaName = e.currentTarget.parentElement.parentElement.dataset.droga;
-        let newRoutes = [...this.state.myRoutes];
-        let newIndex = null;
-
-        newRoutes.forEach((el,index) => {
-            if(el.droga === drogaName){
-                newIndex = index;
-            }
-        })
-        newRoutes[newIndex].styl = e.target.value.toUpperCase();
-
-        this.setState({
-            myRoutes: newRoutes
-        })
-    }
-
-    handleOcena = (e) => {
-        let drogaName = e.currentTarget.parentElement.parentElement.dataset.droga;
-        let newRoutes = [...this.state.myRoutes];
-        let newIndex = null;
-
-        newRoutes.forEach((el,index) => {
-            if(el.droga === drogaName){
-                newIndex = index;
-            }
-        })
-        newRoutes[newIndex].ocena = e.target.value;
-
-        this.setState({
-            myRoutes: newRoutes
-        })
-    }
-
-    handleChecked = (e) => {
-        let drogaName = e.currentTarget.parentElement.parentElement.dataset.droga;
-        let newRoutes = [...this.state.myRoutes];
-        let newIndex = null;
-
-        newRoutes.forEach((el,index) => {
-            if(el.droga === drogaName){
-                newIndex = index;
-            }
-        })
-        newRoutes[newIndex].checked = e.target.checked;
-
-        this.setState({
-            myRoutes: newRoutes
+            [name]: value
         })
     }
 
     handleSend = () => {
-
-        let dataToSend = [];
-        this.state.myRoutes.forEach( el => {
-            if (el.checked){
-                dataToSend.push(el);
-            }
-        });
         console.log(dataToSend, this.props.userIn);
 
         fetch('https://mojajura.herokuapp.com/api/ascents/add', {
@@ -137,23 +66,6 @@ class RouteList extends React.Component{
         })
     }
 
-    handleComment = (e) => {
-        let drogaName = e.currentTarget.parentElement.parentElement.dataset.droga;
-        let newRoutes = [...this.state.myRoutes];
-        let newIndex = null;
-
-        newRoutes.forEach((el,index) => {
-            if(el.droga === drogaName){
-                newIndex = index;
-            }
-        })
-        newRoutes[newIndex].comment = e.target.value;
-
-        this.setState({
-            myRoutes: newRoutes
-        })
-    }
-
     render(){
         const { classes } = this.props;
         let rows = [];
@@ -163,12 +75,22 @@ class RouteList extends React.Component{
             <td>{el.wycena}</td>
             <td>{el.przejscia}</td>
             <td>{el.ocena}</td>
-            <td><TextField onChange={this.handleComment} placeholder="Komentarz"/></td>
+            <td>
+                <TextField
+                    name="comment"
+                    label="Komentarz" 
+                    onChange={this.handleChage}
+                    value={this.state.comment} 
+                    placeholder="Komentarz"/>
+            </td>
             <td>
                 <TextField 
                     id="date" 
-                    label="Data przejścia" 
-                    onChange={this.handleDate} type="date"
+                    name="date"
+                    label="Data przejścia"
+                    value={this.state.date} 
+                    onChange={this.handleChage} 
+                    type="date"
                     InputLabelProps={{
                         shrink: true,
                       }}/></td>
@@ -176,7 +98,8 @@ class RouteList extends React.Component{
                 <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="style">Styl</InputLabel>
                     <Select 
-                        onChange={this.handleStlye}
+                        onChange={this.handleChage}
+                        value={this.state.style}
                         inputProps={{
                             name: 'style',
                             id: 'style',
@@ -193,7 +116,8 @@ class RouteList extends React.Component{
                 <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="ocena">Ocena</InputLabel>
                     <Select 
-                        onChange={this.handleOcena}
+                        onChange={this.handleChage}
+                        value={this.state.ocena}
                         inputProps={{
                             name: 'ocena',
                             id: 'ocena',
@@ -207,10 +131,10 @@ class RouteList extends React.Component{
                     </Select>
                 </FormControl>
             </td>
-            <td><Checkbox 
-                    onChange={this.handleChecked}
-                    tabIndex={-1}
-                    disableRipple />
+            <td>
+                <Button variant="outlined" color="primary">
+                    Dodaj
+                </Button>
             </td>
         </tr>));
 
@@ -242,13 +166,14 @@ class RouteList extends React.Component{
                                                 style={{margin: '30px'}}>Dodaj przejścia</button> : null }
                 </div>
                 <div className={classes.sectionMobile}>
-                    {this.props.history.location.state.map( route => { 
-                       return  <RouteListExpansion
+                    {this.props.history.location.state.map( route => ( 
+                         <RouteListExpansion
                             key={route._id}
+                            data-droga={route.droga}
                             name={route.droga}
                             wycena={route.wycena}
                             przejscia={route.przejscia}/>
-                        })}
+                        ))}
                 </div>
             </Paper>
         )
