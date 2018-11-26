@@ -6,7 +6,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MojaJura from "./components/MojaJura/MojaJura.jsx";
 import MyList from "./containers/MyList/MyList.jsx";
 import Nav from "./containers/Nav/Nav.jsx";
-import SearchResult from './SearchResult/SearchResult.jsx';
+import SearchResult from './components/SearchResult/SearchResult.jsx';
 import EastJura from './containers/EastJura/EastJura.jsx';
 import CenterJura from './containers/CenterJura/CenterJura.jsx';
 import NorthJura from './containers/NorthJura/NorthJura.jsx';

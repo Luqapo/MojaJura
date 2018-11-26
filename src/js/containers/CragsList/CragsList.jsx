@@ -27,6 +27,7 @@ class CragsList extends Component{
             .then( resp => resp.json())
             .then( resp => {
                     resp.rejon = rejon;
+                    resp.skala = skalaName;
                     this.props.history.push('/routes', resp);
             })   
 

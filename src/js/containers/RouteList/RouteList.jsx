@@ -1,5 +1,5 @@
 import React from "react";
-import AddRoute from "../../AddRoute.jsx";
+import AddRoute from "../AddRoute/AddRoute.jsx";
 import RouteListExpansion from './RouteListExpanansion/RouteListExpansion.jsx';
 import { connect } from 'react-redux';
 
@@ -65,7 +65,6 @@ class RouteList extends React.Component{
                     </TableHead>
                     <TableBody>
                         {rows}
-                        {this.state.addShow ? <AddRoute skala={this.props.skalaName}/> : null}
                     </TableBody>
                 </Table>
                 <div className={classes.sectionMobile}>
@@ -79,6 +78,7 @@ class RouteList extends React.Component{
                             buttonActive={disabled}/>
                         ))}
                 </div>
+                {this.state.addShow ? <AddRoute skala={this.props.history.location.state.skala}/> : null}
                 <div style={{display: 'flex', justifyContent: 'flex-end'}}>
                     <Button onClick={this.handleAdd}
                         variant="outlined"
