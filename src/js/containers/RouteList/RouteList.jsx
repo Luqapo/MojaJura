@@ -5,60 +5,19 @@ import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import { styles } from './RouteListStyles';
+import AddAscent from './AddAscent/AddAscent.jsx'
 
 class RouteList extends React.Component{
     constructor(props) {
         super(props);
 
         this.state = {
-            date: '',
-            style: '',
-            ocena: '',
-            comment: '',
             addShow: false,
         }
     }
-
-    handleChage = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-
-        this.setState({
-            [name]: value
-        })
-    }
-
-    handleSend = () => {
-        console.log(dataToSend, this.props.userIn);
-
-        fetch('https://mojajura.herokuapp.com/api/ascents/add', {
-                method : 'POST',
-                body : JSON.stringify({
-                    user: this.props.userIn,
-                    rejon: this.props.rejonName,
-                    data: dataToSend
-                }),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then( resp => resp.json())
-            .then(function (response) {
-                    console.log(response);
-                })
-            .catch(function (error) {
-                    console.log(error);
-                })
-
-    };
 
     handleAdd = (e) => {
         this.setState({
@@ -68,6 +27,7 @@ class RouteList extends React.Component{
 
     render(){
         const { classes } = this.props;
+        const disabled = Boolean(!this.props.userIn);
         let rows = [];
         this.props.history.location.state.forEach( el => rows.push(<tr key={el._id} 
                                                           data-droga={el.droga}>
@@ -76,65 +36,12 @@ class RouteList extends React.Component{
             <td>{el.przejscia}</td>
             <td>{el.ocena}</td>
             <td>
-                <TextField
-                    name="comment"
-                    label="Komentarz" 
-                    onChange={this.handleChage}
-                    value={this.state.comment} 
-                    placeholder="Komentarz"/>
-            </td>
-            <td>
-                <TextField 
-                    id="date" 
-                    name="date"
-                    label="Data przejścia"
-                    value={this.state.date} 
-                    onChange={this.handleChage} 
-                    type="date"
-                    InputLabelProps={{
-                        shrink: true,
-                      }}/></td>
-            <td>
-                <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="style">Styl</InputLabel>
-                    <Select 
-                        onChange={this.handleChage}
-                        value={this.state.style}
-                        inputProps={{
-                            name: 'style',
-                            id: 'style',
-                          }}>
-                        <MenuItem value="">Wybierz</MenuItem>
-                        <MenuItem value="OS">OS</MenuItem>
-                        <MenuItem value="FL">FL</MenuItem>
-                        <MenuItem value="RP">RP</MenuItem>
-                        <MenuItem value="PP">PP</MenuItem>
-                    </Select>
-                </FormControl>
-            </td>
-            <td>
-                <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="ocena">Ocena</InputLabel>
-                    <Select 
-                        onChange={this.handleChage}
-                        value={this.state.ocena}
-                        inputProps={{
-                            name: 'ocena',
-                            id: 'ocena',
-                          }}>
-                        <MenuItem value="">Oceń</MenuItem>
-                        <MenuItem value="1">1</MenuItem>
-                        <MenuItem value="2">2</MenuItem>
-                        <MenuItem value="3">3</MenuItem>
-                        <MenuItem value="4">4</MenuItem>
-                        <MenuItem value="5">5</MenuItem>
-                    </Select>
-                </FormControl>
-            </td>
-            <td>
-                <Button variant="outlined" color="primary">
-                    Dodaj
-                </Button>
+                <AddAscent
+                    key={el._id}
+                    data-droga={el.droga}
+                    name={el.droga}
+                    wycena={el.wycena}
+                    przejscia={el.przejscia} />
             </td>
         </tr>));
 
@@ -147,11 +54,7 @@ class RouteList extends React.Component{
                         <th>Wycena</th>
                         <th>Przejcia</th>
                         <th>Ocena</th>
-                        <th>Komentarz</th>
-                        <th>Data przejcia</th>
-                        <th>Styl</th>
-                        <th>Twoja ocena</th>
-                        <th>Wybierz</th>
+                        <th>Dodaj przejście</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -159,12 +62,6 @@ class RouteList extends React.Component{
                     {this.state.addShow ? <AddRoute skala={this.props.skalaName}/> : null}
                     </tbody>
                 </table>
-                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-                    { this.props.userIn ? <button onClick={this.handleAdd} 
-                                                style={{margin: '30px'}}>Dodaj drogę</button> : null }
-                    { this.props.userIn ? <button onClick={this.handleSend} 
-                                                style={{margin: '30px'}}>Dodaj przejścia</button> : null }
-                </div>
                 <div className={classes.sectionMobile}>
                     {this.props.history.location.state.map( route => ( 
                          <RouteListExpansion
@@ -174,6 +71,14 @@ class RouteList extends React.Component{
                             wycena={route.wycena}
                             przejscia={route.przejscia}/>
                         ))}
+                </div>
+                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+                    <Button onClick={this.handleAdd}
+                        variant="outlined"
+                        color="primary"
+                        disabled={disabled}>
+                        Dodaj drogę
+                    </Button>
                 </div>
             </Paper>
         )

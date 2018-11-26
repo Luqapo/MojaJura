@@ -16,9 +16,6 @@ export const styles = theme => ({
     },
     details: {
       width: "100%",
-      display: 'flex',
-      flexWrap: 'wrap',
-      alignItems: 'center',
     },
     column: {
       flexBasis: '33.33%',
