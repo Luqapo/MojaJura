@@ -13,7 +13,7 @@ import Menu from '@material-ui/core/Menu';
 import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
 
-import LoginForm from "../Authorization/LoginForm.jsx";
+import LoginForm from "../LoginForm/LoginForm.jsx";
 import * as actions from "../../store/actions/auth.jsx";
 
 import { styles } from './NavStyles'
@@ -156,9 +156,11 @@ class Nav extends React.Component{
                                     Moja Jura
                                 </Button>
                             </div>
-                            { this.state.schowLog ? <LoginForm handleLogOff={this.handleLogOff} 
-                                                                        show={this.state.schowLog} 
-                                                                        showHandle={this.handleLogin}/> : null}
+                            { this.state.schowLog ? <LoginForm 
+                                                        handleLogOff={this.handleLogOff} 
+                                                        show={this.state.schowLog} 
+                                                        showHandle={this.handleLogin}/>
+                                                         : null}
                             <div className={classes.sectionDesktop}>
                                 <div className={classes.upBarItem}>
                                     <div className={classes.search}>

@@ -69,7 +69,6 @@ export const auth = (login, password) => {
         })
         .then( resp => resp.json())
         .then(function (response) {
-                console.log(response);
                 dispatch(authSucces(login, response.token));
             })
         .catch(function (error){

@@ -1,11 +1,11 @@
 import React from "react";
 
-import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
 import { styles } from './NorthJuraStyles';
 
 import { url } from '../../config/config';
+import MyButton from '../../components/MyButton/MyButton.jsx';
 
 class NorthJura extends React.Component{
     constructor(props) {
@@ -45,13 +45,10 @@ class NorthJura extends React.Component{
         const data = [...this.state.data];
         let listElements = data.map( el => (
                         <div key={el._id} className={classes.buttonCenter}>
-                            <Button  
-                                onClick={this.handleSchow} 
-                                data-rejon={el.rejon}
-                                variant="outlined"
-                                color="primary">
-                                {el.rejon}
-                            </Button>
+                            <MyButton  
+                                handleClick={this.handleSchow} 
+                                rejon={el.rejon}
+                                name={el.rejon}/>
                         </div>)
                     );
             return (

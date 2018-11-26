@@ -1,11 +1,11 @@
 import React from "react";
 
-import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
 import { styles } from './CenterJuraStyles';
 
 import { url } from '../../config/config';
+import MyButton from '../../components/MyButton/MyButton.jsx';
 
 class CenterJura extends React.Component{
     constructor(props) {
@@ -44,12 +44,10 @@ class CenterJura extends React.Component{
         const data = [...this.state.data];
         let listElements = data.map( el => (
                         <div key={el._id} className={classes.buttonCenter}>
-                            <Button  
-                                onClick={this.handleSchow} 
-                                data-rejon={el.rejon}
-                                variant="outlined">
-                                {el.rejon}
-                            </Button>
+                            <MyButton  
+                                handleClick={this.handleSchow} 
+                                rejon={el.rejon}
+                                name={el.rejon}/>
                         </div>)
                     );
             return (

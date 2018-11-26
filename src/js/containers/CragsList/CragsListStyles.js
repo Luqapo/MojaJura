@@ -10,12 +10,15 @@ export const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     textAlign: 'center',
+    [theme.breakpoints.up('sm')]: {
+        marginTop: '64px',
+      },
     },
     buttonCenter: {
         width: '100%',
-        height: '40px',
+        height: '50px',
         display: 'flex',
         justifyContent: 'center',
-        margin: '5px 0',
+        margin: '15px 0',
     }
   });
