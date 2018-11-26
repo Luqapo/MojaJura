@@ -21,7 +21,6 @@ class MyList extends React.Component{
         fetch(`${url}/api/ascents/${this.props.userIn}`)
             .then( resp => resp.json())
             .then( resp => {
-                
                 this.setState({
                     list: resp
                 })

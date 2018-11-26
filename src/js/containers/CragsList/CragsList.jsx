@@ -21,15 +21,12 @@ class CragsList extends Component{
     handleList = (e) => {
         let skalaName = e.currentTarget.dataset.skala;
         let newArr = [...this.props.history.location.state];
-        let newRejon = newArr[0].rejon
-        let newList = newArr.map( el => <li key={el._id}>
-                                            <a onClick={this.handleList} 
-                                            href="#" data-skala={el.skala}>{el.skala}</a>
-                                        </li>);
+        let rejon = newArr[0].rejon
 
         fetch(`${url}/api/skaly/${skalaName}`)
             .then( resp => resp.json())
             .then( resp => {
+                    resp.rejon = rejon;
                     this.props.history.push('/routes', resp);
             })   
 

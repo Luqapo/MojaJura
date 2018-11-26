@@ -9,6 +9,7 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 
 import { styles } from './AddAscentStyles';
+import { url } from '../../../config/config'
 
 class AddAscent extends Component {
     state = {
@@ -16,6 +17,7 @@ class AddAscent extends Component {
         style: '',
         ocena: '',
         comment: '',
+        added: false
     }
 
     handleChage = (e) => {
@@ -28,13 +30,17 @@ class AddAscent extends Component {
     }
 
     handleSend = () => {
-        console.log(dataToSend, this.props.userIn);
+        const dataToSend = {...this.props.route};
+        dataToSend.date = this.state.date;
+        dataToSend.styl = this.state.style;
+        dataToSend.ocena = this.state.ocena;
+        dataToSend.comment = this.state.comment;
 
-        fetch('https://mojajura.herokuapp.com/api/ascents/add', {
+        fetch(`${url}/api/ascents/add`, {
                 method : 'POST',
                 body : JSON.stringify({
                     user: this.props.userIn,
-                    rejon: this.props.rejonName,
+                    rejon: this.props.rejon,
                     data: dataToSend
                 }),
                 headers: {
@@ -113,7 +119,10 @@ class AddAscent extends Component {
                     </FormControl>
                 </div>
                 <div className={classes.columnDown}>
-                <Button variant="outlined" color="primary">
+                <Button variant="outlined" 
+                    color="primary" 
+                    disabled={this.props.buttonActive}
+                    onClick={this.handleSend}>
                     Dodaj
                 </Button>
                 </div>

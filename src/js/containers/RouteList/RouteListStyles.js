@@ -19,6 +19,7 @@ export const styles = theme => ({
         display: 'none',
         [theme.breakpoints.up('md')]: {
             display: 'block',
+            minWidth: 700,
             width: '100%',
         },
       },

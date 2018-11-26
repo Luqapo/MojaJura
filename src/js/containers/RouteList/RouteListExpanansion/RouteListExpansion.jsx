@@ -17,17 +17,20 @@ function RouteListExpansion(props) {
         <ExpansionPanel>
           <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
             <div className={classes.column}>
-              <Typography className={classes.heading}>{props.name}</Typography>
+              <Typography className={classes.heading}>{props.route.droga}</Typography>
             </div>
             <div className={classes.column}>
-              <Typography className={classes.secondaryHeading}>{props.wycena}</Typography>
+              <Typography className={classes.secondaryHeading}>{props.route.wycena}</Typography>
             </div>
             <div className={classes.column}>
-              <Typography className={classes.secondaryHeading}>{props.przejscia}</Typography>
+              <Typography className={classes.secondaryHeading}>{props.route.przejscia}</Typography>
             </div>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails className={classes.details}>
-            <AddAscent />
+            <AddAscent buttonActive={props.buttonActive}
+                        route={props.route}
+                        rejon={props.rejon}
+                        userIn={props.userIn}/>
           </ExpansionPanelDetails>
           <Divider />
         </ExpansionPanel>
